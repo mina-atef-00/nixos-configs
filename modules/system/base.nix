@@ -13,7 +13,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Configure console keymap
-  console.keyMap = "us";
+ console.keyMap = "us";
 
   # Set your time zone.
   time.timeZone = "Africa/Cairo";
