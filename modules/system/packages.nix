@@ -189,4 +189,39 @@ in
     BROWSER = "zen-browser";
     TERMINAL = "kitty";
   };
+
+  # Fonts configuration
+  fonts.packages = with pkgs; [
+    # Adobe Source Han Sans/Serif (CJK fonts)
+    source-han-sans
+    source-han-serif
+
+    # Liberation fonts
+    liberation_ttf
+    liberation_mono
+
+    # Noto fonts (Google's font family)
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+
+    # Ubuntu fonts
+    ubuntu_font_family
+
+    # GNU FreeFont
+    freefont_ttf
+
+    # Ghostscript fonts
+    gsfonts
+
+    # WenQuanYi fonts (Chinese)
+    wqy_zenhei
+    wqy_microhei
+
+    # Additional useful fonts
+    fira-code
+    fira-code-symbols
+    font-awesome
+    awesome-terminal-fonts
+  ];
 }
