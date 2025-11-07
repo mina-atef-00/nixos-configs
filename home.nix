@@ -134,12 +134,9 @@ in
       mpv
       ffmpeg
       imagemagick
-      gimp
-      inkscape
 
       # Browsers
       zen-browser
-      firefox
 
       # Communication
       vesktop
