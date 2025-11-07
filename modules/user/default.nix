@@ -94,74 +94,10 @@ in
     # Enable Fish shell
     shell = pkgs.fish;
 
-    # Package management
+    # Package management - All packages moved to system level
     packages = with pkgs; [
-      # Core utilities
-      git
-      wget
-      curl
-      ripgrep
-      fd
-      fzf
-      bat
-      jq
-      yq
-      zip
-      unzip
-      tree
-      htop
-      btop
-      bottom
-
-      # Terminal and shell
-      fish
-      starship
-      direnv
-
-      # Development tools
-      neovim
-      nodejs
-      nodePackages.npm
-      nodePackages.yarn
-      python3
-      python311Packages.pip
-      gcc
-      gnumake
-      cmake
-      gitAndTools.gitFull
-
-      # Media and graphics
-      mpv
-      ffmpeg
-      imagemagick
-
-
-      # System tools
-      nix-index
-      nix-tree
-      gitoxide
-
-      # Audio/video
-      pavucontrol
-      playerctl
-
-      # File management
-      file
-      unzip
-      p7zip
-
-      # Security
-      gnupg
-      age
-      openssl
-
-      # Wayland utilities
-      wayland-protocols
-      wl-clipboard
-      wlr-randr
-      grim
-      slurp
-      swappy
+      # Only keep packages that are specifically needed in user profile
+      # Most packages are now available system-wide
     ];
 
     # File management
@@ -183,7 +119,7 @@ in
         ll = "ls -la";
         ".." = "cd ..";
         "..." = "cd ../..";
-        nrs = "nixos-rebuild switch --flake .#nixos";
+        nrs = "sudo nixos-rebuild switch --flake .#nixos";
         hms = "home-manager switch --flake .#nixos";
       };
       interactiveShellInit = ''
@@ -538,10 +474,10 @@ in
 
   # Environment variables
   home.sessionVariables = {
-    EDITOR = "nvim";
-    BROWSER = "zen-browser"; # This will use the system-installed zen-browser
-    TERMINAL = "kitty";
-    READER = "zathura";
+    EDITOR = "nvim"; # System-installed
+    BROWSER = "zen-browser"; # System-installed
+    TERMINAL = "kitty"; # System-installed
+    READER = "zathura"; # System-installed
     XDG_CURRENT_DESKTOP = "mangowc";
     XDG_SESSION_TYPE = "wayland";
     MOZ_ENABLE_WAYLAND = "1";
