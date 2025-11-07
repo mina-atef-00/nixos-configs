@@ -47,6 +47,10 @@ in
     htop
     btop
     bottom
+    zen-browser
+    vesktop
+    steam
+    obsidian
     thunderbird
     libreoffice
     file

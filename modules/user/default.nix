@@ -135,19 +135,6 @@ in
       ffmpeg
       imagemagick
 
-      # Browsers
-      zen-browser
-
-      # Communication
-      vesktop
-
-      # Gaming
-      steam
-
-      # Productivity
-      obsidian
-      thunderbird
-      libreoffice
 
       # System tools
       nix-index
@@ -552,7 +539,7 @@ in
   # Environment variables
   home.sessionVariables = {
     EDITOR = "nvim";
-    BROWSER = "zen-browser";
+    BROWSER = "zen-browser"; # This will use the system-installed zen-browser
     TERMINAL = "kitty";
     READER = "zathura";
     XDG_CURRENT_DESKTOP = "mangowc";

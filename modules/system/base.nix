@@ -153,8 +153,15 @@
   nix.gc = {
     automatic = true;
     dates = "weekly";
-    options = "--delete-older-than 30d";
+    options = "";
   };
+
+  # Keep only the last 3 generations (current + 2 previous)
+  nix.settings.generations.max = 3;
+  nix.settings.generations.max-fallback = 5;
+
+  # Also set the profile generations to keep
+  system.nixos.rebuild.switch.enable = true;
 
   # Enable Bluetooth
   hardware.bluetooth.enable = true;
