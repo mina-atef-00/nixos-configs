@@ -170,6 +170,9 @@ in
       qt6.qtstyleplugin-kvantum
       libsForQt5.qtstyleplugin-kvantum
 
+      # GTK themes
+      colloid-gtk-theme
+
       # Add any additional system-wide packages here
     ]
     ++ [

@@ -64,6 +64,19 @@ in
       ".config/mpv".source = ./config/mpv;
       ".config/kitty".source = ./config/kitty;
     };
+
+    # Enable Kvantum theme engine
+    qt = {
+      enable = true;
+      platform = "wayland";
+      style.name = "kvantum";
+    };
+
+    # Configure Kvantum to use Colloid theme
+    qt.kvantum = {
+      enable = true;
+      package = pkgs.qt6.qtstyleplugin-kvantum;
+    };
   };
 
   # Programs configuration
@@ -245,13 +258,6 @@ in
       theme = "dark";
       dynamicTheming = true;
     };
-  };
-
-  # Qt configuration for theming
-  qt = {
-    enable = true;
-    platform = "wayland";
-    style = "Colloid";
   };
 
   # Environment variables
