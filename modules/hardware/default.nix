@@ -78,7 +78,7 @@
 
   # Enable bluetooth
   hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
+  services.blueman.enable = false; # Disable blueman since DMS Shell may provide better integration
 
   # Enable audio with PipeWire
   hardware.pulseaudio.enable = false;

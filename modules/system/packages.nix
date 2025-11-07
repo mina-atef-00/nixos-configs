@@ -47,7 +47,6 @@ in
     htop
     btop
     bottom
-    firefox
     thunderbird
     libreoffice
     file

@@ -13,7 +13,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Configure console keymap
- console.keyMap = "us";
+  console.keyMap = "us";
 
   # Set your time zone.
   time.timeZone = "Africa/Cairo";
@@ -70,7 +70,7 @@
       "wheel"
       "audio"
       "video"
-      "docker"
+      "podman"
     ];
     packages = with pkgs; [
       # Add packages for this user
@@ -94,8 +94,9 @@
     };
   };
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
+  # Printing is disabled by default but can be enabled if needed.
+  # To enable printing, uncomment the next line:
+  # services.printing.enable = true;
 
   # Enable sound.
   sound.enable = true;
@@ -111,18 +112,22 @@
   };
 
   # Enable flatpak support
-  services.flatpak.enable = true;
+  services.flatpak.enable = false;
 
-  # Enable Docker
-  virtualisation.docker.enable = true;
-  virtualisation.docker.rootless = {
+  # Enable Podman
+  virtualisation.podman = {
     enable = true;
-    setSocketVariable = true;
+    enableNixOsModule = true;
+    dockerCompat = true; # Enable docker-compatible socket
+    dockerSocket.enable = true; # Create the docker-compatible socket
+    extraPackages = with pkgs; [
+      podman-compose
+    ];
   };
 
   # Enable ZRAM
   zramSwap.enable = true;
-  zramSwap.memoryPercent = 25;
+  zramSwap.memoryPercent = 50;
 
   # Enable NTFS support
   services.udisks2.enable = true;
@@ -153,7 +158,7 @@
 
   # Enable Bluetooth
   hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
+  services.blueman.enable = false; # Disable blueman since DMS Shell may provide better integration
 
   # Enable Tailscale
   services.tailscale.enable = true;

@@ -31,9 +31,6 @@ let
   # Get the latest Thunderbird from unstable
   thunderbird = pkgs-unstable.thunderbird;
 
-  # Get the latest Firefox from unstable (as fallback)
-  firefox = pkgs-unstable.firefox;
-
   # Create a custom neovim with LazyVim
   neovim =
     pkgs.neovim.overrideAttrs
@@ -137,12 +134,9 @@ in
       mpv
       ffmpeg
       imagemagick
-      gimp
-      inkscape
 
       # Browsers
       zen-browser
-      firefox
 
       # Communication
       vesktop
