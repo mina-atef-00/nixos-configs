@@ -16,6 +16,7 @@
   # Enable MangoWC at the system level
   programs.mango.enable = true;
 
+  # Configure video drivers for MangoWC
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.graphics.enable = true;
 }
