@@ -37,7 +37,7 @@ let
   # Get MangoWC from the input
   mangowc = inputs.mangowc.packages.${pkgs.system}.mangowc;
 
- # Create a custom neovim with LazyVim (moved from user config)
+  # Create a custom neovim with LazyVim (moved from user config)
   neovim =
     pkgs.neovim.overrideAttrs
       (oldAttrs: {
@@ -85,88 +85,97 @@ in
 {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
- environment.systemPackages = with pkgs; [
-    # Core utilities
-    git
-    wget
-    curl
-    vim
-    htop
-    btop
-    bottom
-    ripgrep
-    fd
-    fzf
-    bat
-    jq
-    yq
-    zip
-    unzip
-    tree
-    file
-    nix-index
-    nix-tree
-    gitoxide
+  environment.systemPackages =
+    with pkgs;
+    [
+      # Core utilities
+      git
+      wget
+      curl
+      vim
+      htop
+      btop
+      bottom
+      ripgrep
+      fd
+      fzf
+      bat
+      jq
+      yq
+      zip
+      unzip
+      tree
+      file
+      nix-index
+      nix-tree
+      gitoxide
 
-    # Terminal and shell
-    fish
-    starship
-    direnv
+      # Terminal and shell
+      fish
+      starship
+      direnv
 
-    # Development tools
-    neovim
-    nodejs
-    nodePackages.npm
-    nodePackages.yarn
-    python3
-    python311Packages.pip
-    gcc
-    gnumake
-    cmake
-    gitAndTools.gitFull
+      # Development tools
+      nodejs
+      nodePackages.npm
+      nodePackages.yarn
+      python3
+      python311Packages.pip
+      gcc
+      gnumake
+      cmake
+      gitAndTools.gitFull
 
-    # Media and graphics
-    mpv
-    ffmpeg
-    imagemagick
+      # Media and graphics
+      mpv
+      ffmpeg
+      imagemagick
 
-    # Browsers
-    zen-browser
+      # Browsers
+      zen-browser
 
-    # Communication
-    vesktop
+      # Communication
+      vesktop
 
-    # Gaming
-    steam
+      # Gaming
+      steam
 
-    # Productivity
-    obsidian
-    thunderbird
-    libreoffice
+      # Productivity
+      obsidian
+      thunderbird
+      libreoffice
 
-    # Audio/video
-    pavucontrol
-    playerctl
+      # Audio/video
+      pavucontrol
+      playerctl
 
-    # File management
-    unzip
-    p7zip
+      # File management
+      unzip
+      p7zip
 
-    # Security
-    gnupg
-    age
-    openssl
+      # Security
+      gnupg
+      age
+      openssl
 
-    # Wayland utilities
-    wayland-protocols
-    wl-clipboard
-    wlr-randr
-    grim
-    slurp
-    swappy
+      # Wayland utilities
+      wayland-protocols
+      wl-clipboard
+      wlr-randr
+      grim
+      slurp
+      swappy
 
-    # Add any additional system-wide packages here
- ];
+      # Qt themes
+      qt6.qtstyleplugin-kvantum
+      libsForQt5.qtstyleplugin-kvantum
+
+      # Add any additional system-wide packages here
+    ]
+    ++ [
+      # Add packages that are not in pkgs namespace
+      neovim # Custom neovim defined in let block
+    ];
 
   # Set environment variables
   environment.variables = {

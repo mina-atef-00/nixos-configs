@@ -31,50 +31,8 @@ let
   # Get the latest Thunderbird from unstable
   thunderbird = pkgs-unstable.thunderbird;
 
-  # Create a custom neovim with LazyVim
-  neovim =
-    pkgs.neovim.overrideAttrs
-      (oldAttrs: {
-        nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ pkgs.cmake ];
-      }).override
-      {
-        viAlias = true;
-        vimAlias = true;
-        configure = {
-          customRC = ''
-            " Use system clipboard by default
-            set clipboard=unnamedplus
-          '';
-          packages.myVimPackage = with pkgs.vimPlugins; {
-            start = [
-              # Core LazyVim plugins
-              lazy-nvim
-              mason-nvim
-              mason-lspconfig-nvim
-              nvim-lspconfig
-              nvim-treesitter.withAllGrammars
-              indent-blankline-nvim
-              nvim-cmp
-              cmp-nvim-lsp
-              cmp-buffer
-              cmp-path
-              cmp-cmdline
-              lualine-nvim
-              toggleterm-nvim
-              nvim-tree-lua
-              nvim-web-devicons
-              telescope-nvim
-              plenary-nvim
-              nvim-colorizer-lua
-              which-key-nvim
-              gitsigns-nvim
-              # Theme
-              catppuccin-nvim
-            ];
-            opt = [ ];
-          };
-        };
-      };
+  # Since all packages are now system-wide, we don't need to define them in user config
+  # The custom neovim should be defined in the system packages module
 in
 {
   # Import the DMS Shell home module as per official guide
@@ -152,150 +110,7 @@ in
       };
     };
 
-    # Kitty terminal
-    kitty = {
-      enable = true;
-      font.name = "FiraCode Nerd Font";
-      font.size = 12.0;
-      settings = {
-        background_opacity = "0.95";
-        tab_bar_edge = "top";
-        tab_bar_style = "powerline";
-        cursor_shape = "beam";
-        remember_window_size = false;
-        scrollback_lines = 10000;
-        enable_audio_bell = false;
-        mouse_hide_wait = 3.0;
-        url_color = "#89b4fa";
-        wheel_scroll_multiplier = 3.0;
-        repaint_delay = 10;
-        input_delay = 3;
-        sync_to_monitor = true;
-      };
-      keybindings = {
-        "ctrl+shift+c" = "copy_to_clipboard";
-        "ctrl+shift+v" = "paste_from_clipboard";
-        "ctrl+shift+t" = "new_tab";
-        "ctrl+shift+w" = "close_tab";
-        "ctrl+shift+plus" = "change_font_size +2.0";
-        "ctrl+minus" = "change_font_size -2.0";
-        "ctrl+shift+tab" = "next_tab";
-        "ctrl+tab" = "previous_tab";
-        "ctrl+shift+left" = "previous_tab";
-        "ctrl+shift+right" = "next_tab";
-      };
-    };
-
-    # MPV media player
-    mpv = {
-      enable = true;
-      config = {
-        # Hardware Decoding
-        hwdec = "auto";
-        "hwdec-codecs" = "all";
-        "vd-lavc-dr" = "auto";
-        "vd-lavc-film-grain" = "gpu";
-
-        # Video Output
-        vo = "gpu";
-        "gpu-api" = "auto";
-        "opengl-pbo" = "yes";
-        "opengl-sw" = "auto";
-
-        # Caching and Buffering
-        cache = "yes";
-        "demuxer-max-bytes" = "200MiB";
-        "demuxer-max-back-bytes" = "20MiB";
-        "demuxer-readahead-secs" = "120";
-        "demuxer-cache-wait" = "no";
-        "cache-pause" = "yes";
-        "cache-pause-wait" = "2.0";
-        "cache-pause-initial" = "yes";
-
-        # Audio/Video Sync
-        "video-sync" = "audio";
-        "video-sync-max-video-change" = "1";
-        "video-sync-max-audio-change" = "0.125";
-        "video-sync-max-factor" = "5";
-        autosync = "30";
-
-        # Performance
-        "vd-lavc-threads" = "0";
-        ao = "pipewire";
-        "ao-pipewire-buffer" = "10";
-        "ao-pulse-buffer" = "10";
-        "opengl-swapinterval" = "1";
-        "opengl-waitvsync" = "no";
-
-        # Video Filters and Scaling
-        scale = "lanczos";
-        cscale = "lanczos";
-        dscale = "bicubic";
-        tscale = "oversample";
-        "scale-antiring" = "0.8";
-        "cscale-antiring" = "0.8";
-        "correct-downscaling" = "yes";
-        "sigmoid-upscaling" = "yes";
-
-        # Audio
-        "audio-buffer" = "0.2";
-        "audio-client-name" = "mpv";
-
-        # Video Adjustments
-        deband = "yes";
-        "deband-grain" = "48";
-        denoise = "0";
-        sharpen = "0";
-        contrast = "0";
-        brightness = "0";
-        saturation = "0";
-        gamma = "0";
-
-        # Subtitles
-        "sub-auto" = "exact";
-        "sub-scale-by-window" = "yes";
-        "sub-scale-with-window" = "yes";
-        "sub-ass-force-margins" = "no";
-        "sub-use-margins" = "yes";
-
-        # Input
-        "input-default-bindings" = "yes";
-        "input-vo-keyboard" = "yes";
-
-        # Window
-        ontop = "no";
-        border = "yes";
-        "keep-open" = "yes";
-        "keep-open-pause" = "no";
-        "autofit-larger" = "75%x75%";
-        keepaspect = "yes";
-        "keepaspect-window" = "yes";
-
-        # Screenshot
-        "screenshot-directory" = "~/Pictures";
-        "screenshot-template" = "mpv-shot%n";
-        "screenshot-format" = "jpg";
-        "screenshot-jpeg-quality" = "90";
-
-        # OSD
-        "osd-bar" = "yes";
-        "osd-bar-align-y" = "0.5";
-        "osd-bar-w" = "75";
-        "osd-bar-h" = "3.125";
-        "osd-font-size" = "24";
-        "osd-color" = "#FFFFFFFF";
-        "osd-border-size" = "1.65";
-        "osd-shadow-offset" = "0";
-        "osd-level" = "1";
-      };
-      scripts = with pkgs; [
-        mpvScripts.autosubsync
-        mpvScripts.thumbfast
-        mpvScripts.uosc
-      ];
-    };
-
-    # Neovim configuration
+    # Neovim configuration - using system-installed custom neovim with local config
     neovim = {
       enable = true;
       defaultEditor = true;
@@ -315,29 +130,6 @@ in
           max_item_size = 1024000;
         };
       };
-    };
-
-    # Audio OSD
-    swayosd = {
-      enable = true;
-      settings = {
-        show-values = true;
-        timeout = 2000;
-      };
-    };
-
-    # Notification daemon
-    mako = {
-      enable = true;
-      backgroundColor = "#1e1e2e";
-      borderColor = "#89b4fa";
-      borderSize = 2;
-      defaultTimeout = 5000;
-      font = "FiraCode Nerd Font 10";
-      padding = "10,10,10,10";
-      margin = "10,10,10,10";
-      width = 500;
-      height = 100;
     };
 
     # Network tray
@@ -418,25 +210,15 @@ in
       super, 3 tag 3
       super, 4 tag 4
       super, 5 tag 5
-      super, 6 tag 6
-      super, 7 tag 7
-      super, 8 tag 8
-      super, 9 tag 9
       super+shift, 1 tagn 1
       super+shift, 2 tagn 2
       super+shift, 3 tagn 3
       super+shift, 4 tagn 4
       super+shift, 5 tagn 5
-      super+shift, 6 tagn 6
-      super+shift, 7 tagn 7
-      super+shift, 8 tagn 8
-      super+shift, 9 tagn 9
     '';
     autostart_sh = ''
       # Start necessary services for MangoWC
       ${pkgs.xdg-desktop-portal-wlr}/bin/xdg-desktop-portal-wlr &
-      ${pkgs.swaybg}/bin/swaybg -i /home/mina/Pictures/wallpaper.jpg &
-      ${pkgs.waybar}/bin/waybar &
       ${pkgs.swaync}/bin/swaync &
       ${pkgs.wlsunset}/bin/wlsunset -l 30.0556 -L 31.22 & # Cairo coordinates
       ${pkgs.wl-clip-persist}/bin/wl-clip-persist &
@@ -450,7 +232,7 @@ in
     enableSystemd = true; # Systemd service for auto-start
     enableSystemMonitoring = true; # System monitoring widgets (dgop)
     enableClipboard = true; # Clipboard history manager
-    enableVPN = true; # VPN management widget
+    enableVPN = false; # VPN management widget
     enableBrightnessControl = true; # Backlight/brightness controls
     enableColorPicker = true; # Color picker tool
     enableDynamicTheming = true; # Wallpaper-based theming (matugen)
@@ -469,7 +251,7 @@ in
   qt = {
     enable = true;
     platform = "wayland";
-    style = "adwaita-dark";
+    style = "Colloid";
   };
 
   # Environment variables
