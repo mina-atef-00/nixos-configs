@@ -1,0 +1,24 @@
+# KiloCode configuration directory
+.kilocode/
+
+# Nix build artifacts
+result/
+*.drv
+
+# NixOS garbage collector roots
+/nix/var/nix/gcroots/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Secrets and local configuration
+secrets.nix
+.local/
