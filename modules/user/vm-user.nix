@@ -17,6 +17,14 @@ let
   };
 in
 {
+  # Import the DMS Shell home module as per official guide
+  imports = [
+    inputs.dankMaterialShell.homeModules.dankMaterialShell.default
+    # Add the niri module if using niri compositor
+    # inputs.dankMaterialShell.homeModules.dankMaterialShell.niri
+    inputs.mangowc.hmModules.mango
+  ];
+
   # Home Manager configuration
   home = {
     username = "vmuser";
@@ -252,7 +260,29 @@ in
       ${pkgs.waybar}/bin/waybar &
       ${pkgs.swaync}/bin/swaync &
       ${pkgs.wl-clip-persist}/bin/wl-clip-persist &
+      # Note: DMS will be handled by its own module
     '';
+  };
+
+  # Configure DMS Shell as per official guide for VM
+  programs.dankMaterialShell = {
+    enable = true;
+    enableSystemd = true; # Systemd service for auto-start
+    enableSystemMonitoring = true; # System monitoring widgets (dgop)
+    enableClipboard = true; # Clipboard history manager
+    enableVPN = true; # VPN management widget
+    enableBrightnessControl = true; # Backlight/brightness controls
+    enableColorPicker = true; # Color picker tool
+    enableDynamicTheming = true; # Wallpaper-based theming (matugen)
+    enableAudioWavelength = true; # Audio visualizer (cava)
+    enableCalendarEvents = true; # Calendar integration (khal)
+    enableSystemSound = true; # System sound effects
+
+    # Default settings that will be used on first launch
+    default.settings = {
+      theme = "dark";
+      dynamicTheming = true;
+    };
   };
 
   # Qt configuration for theming
