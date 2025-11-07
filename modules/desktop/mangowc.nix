@@ -20,7 +20,7 @@
   services.xserver = {
     videoDrivers = [ "nvidia" ];
     layout = "us,ar";
-    xkbOptions = "grp:alt_shift_toggle,caps:swapescape";
+    xkbOptions = "grp:win_space_toggle,caps:swapescape";
   };
   hardware.graphics.enable = true;
 }
