@@ -173,6 +173,9 @@ in
       # GTK themes
       colloid-gtk-theme
 
+      # KDE themes
+      colloid-kde
+
       # Add any additional system-wide packages here
     ]
     ++ [
