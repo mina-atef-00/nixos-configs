@@ -17,6 +17,10 @@
   programs.mango.enable = true;
 
   # Configure video drivers for MangoWC
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver = {
+    videoDrivers = [ "nvidia" ];
+    layout = "us,ar";
+    xkbOptions = "grp:alt_shift_toggle,caps:swapescape";
+  };
   hardware.graphics.enable = true;
 }
