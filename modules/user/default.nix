@@ -46,9 +46,6 @@ in
     homeDirectory = "/home/mina";
     stateVersion = "25.05"; # Match the system version
 
-    # Enable Fish shell
-    shell = pkgs.fish;
-
     # Package management - All packages moved to system level
     packages = with pkgs; [
       # Only keep packages that are specifically needed in user profile
