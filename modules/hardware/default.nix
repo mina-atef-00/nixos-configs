@@ -58,27 +58,7 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
-  # Enable OpenGL support
-  hardware.opengl = {
-    enable = true;
-    driSupport32Bit = true;
-  };
-
-  # Firmware support
-  hardware.enableRedistributableFirmware = true;
-
-  # Network hardware
-  networking = {
-    useDHCP = lib.mkDefault true;
-    networkmanager.enable = true;
-  };
-
-  # Enable bluetooth
-  hardware.bluetooth.enable = true;
-  services.blueman.enable = false; # Disable blueman since DMS Shell may provide better integration
-
   # Enable audio with PipeWire
-  hardware.pulseaudio.enable = false;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -89,5 +69,12 @@
 
   # Enable printing (can be disabled later if not needed)
   services.printing.enable = false;
+
+  # Enable Bluetooth
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = false; # Disable blueman since DMS Shell may provide better integration
+
+  # Enable PulseAudio service (renamed from hardware.pulseaudio)
+  services.pulseaudio.enable = false;
 
 }
