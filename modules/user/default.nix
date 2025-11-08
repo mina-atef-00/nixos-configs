@@ -37,7 +37,7 @@ in
 {
   # Import the DMS Shell home module as per official guide
   imports = [
-    inputs.dankMaterialShell.homeModules.dankMaterialShell.default
+    inputs.dankMaterialShell.homeModules.dankMaterialShell
     # Add the niri module if using niri compositor
     # inputs.dankMaterialShell.homeModules.dankMaterialShell.niri
     inputs.mangowc.hmModules.mango
@@ -115,7 +115,7 @@ in
   };
 
   # Configure DMS Shell as per official guide
-  dankMaterialShell = {
+  home.dankMaterialShell = {
     enable = true;
     enableSystemd = true; # Systemd service for auto-start
     enableSystemMonitoring = true; # System monitoring widgets (dgop)
