@@ -16,8 +16,8 @@ let
     };
   };
 
-  # Get the latest zen-browser from unstable with fallback
-  zen-browser = if pkgs-unstable ? zen-browser then pkgs-unstable.zen-browser else pkgs.firefox;
+  # Get Zen Browser from the dedicated flake
+  zen-browser = inputs.zen-browser.packages.${pkgs.system}.zen-browser;
 
   # Get the latest Vesktop from unstable with fallback
   vesktop = if pkgs-unstable ? vesktop then pkgs-unstable.vesktop else pkgs.discord;
@@ -31,11 +31,8 @@ let
   # Get the latest Thunderbird from unstable with fallback
   thunderbird = if pkgs-unstable ? thunderbird then pkgs-unstable.thunderbird else pkgs.thunderbird;
 
-  # Get the latest Firefox from unstable (as fallback)
-  firefox = if pkgs-unstable ? firefox then pkgs-unstable.firefox else pkgs.firefox;
-
   # Get MangoWC from the input
-  mangowc = inputs.mangowc.packages.${pkgs.system}.mangowc;
+ mangowc = inputs.mangowc.packages.${pkgs.system}.mangowc;
 
   # Create a custom neovim with LazyVim (moved from user config)
   neovim =
@@ -165,10 +162,6 @@ in
       grim
       slurp
       swappy
-
-      # Qt themes
-      qt6.qtstyleplugin-kvantum
-      libsForQt5.qtstyleplugin-kvantum
 
       # GTK themes
       colloid-gtk-theme

@@ -8,29 +8,6 @@
 }:
 
 let
-  # Use unstable packages for certain applications
-  pkgs-unstable = import inputs.nixpkgs-unstable {
-    system = "x86_64-linux";
-    config = {
-      allowUnfree = true;
-    };
-  };
-
-  # Get the latest zen-browser from unstable
-  zen-browser = pkgs-unstable.zen-browser;
-
-  # Get the latest Vesktop from unstable
-  vesktop = pkgs-unstable.vesktop;
-
-  # Get the latest Steam from unstable
-  steam = pkgs-unstable.steam;
-
-  # Get the latest OBSidian from unstable
-  obsidian = pkgs-unstable.obsidian;
-
-  # Get the latest Thunderbird from unstable
-  thunderbird = pkgs-unstable.thunderbird;
-
   # Since all packages are now system-wide, we don't need to define them in user config
   # The custom neovim should be defined in the system packages module
 in
@@ -38,7 +15,7 @@ in
   # Import the MangoWC home module
   imports = [
     inputs.mangowc.hmModules.mango
-  ];
+ ];
 
   # Home Manager configuration
   home = {
@@ -124,7 +101,7 @@ in
   };
 
   # XDG configuration
-  xdg = {
+ xdg = {
     enable = true;
 
     # Mime types
@@ -207,7 +184,7 @@ in
 
 
   # Environment variables
-  home.sessionVariables = {
+ home.sessionVariables = {
     EDITOR = "nvim"; # System-installed
     BROWSER = "zen-browser"; # System-installed
     TERMINAL = "kitty"; # System-installed
