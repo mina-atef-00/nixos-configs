@@ -115,7 +115,7 @@ in
   };
 
   # Configure DMS Shell as per official guide
-  dankMaterialShell = {
+  home.dankMaterialShell = {
     enable = true;
     enableSystemd = true; # Systemd service for auto-start
     enableSystemMonitoring = true; # System monitoring widgets (dgop)
