@@ -185,7 +185,7 @@ in
 
     # Liberation fonts
     liberation_ttf
-    liberation_mono
+    liberation-sans
 
     # Noto fonts (Google's font family)
     noto-fonts
