@@ -24,4 +24,7 @@
 
   # Define how NixOS should be built.
   system.stateVersion = "25.05"; # Did you read the comment?
+  
+  # Allow unfree packages (needed for nvidia drivers)
+  nixpkgs.config.allowUnfree = true;
 }
