@@ -35,49 +35,44 @@ let
  mangowc = inputs.mangowc.packages.${pkgs.system}.mangowc;
 
   # Create a custom neovim with LazyVim (moved from user config)
-  neovim =
-    pkgs.neovim.overrideAttrs
-      (oldAttrs: {
-        nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ pkgs.cmake ];
-      }).override
-      {
-        viAlias = true;
-        vimAlias = true;
-        configure = {
-          customRC = ''
-            " Use system clipboard by default
-            set clipboard=unnamedplus
-          '';
-          packages.myVimPackage = with pkgs.vimPlugins; {
-            start = [
-              # Core LazyVim plugins
-              lazy-nvim
-              mason-nvim
-              mason-lspconfig-nvim
-              nvim-lspconfig
-              nvim-treesitter.withAllGrammars
-              indent-blankline-nvim
-              nvim-cmp
-              cmp-nvim-lsp
-              cmp-buffer
-              cmp-path
-              cmp-cmdline
-              lualine-nvim
-              toggleterm-nvim
-              nvim-tree-lua
-              nvim-web-devicons
-              telescope-nvim
-              plenary-nvim
-              nvim-colorizer-lua
-              which-key-nvim
-              gitsigns-nvim
-              # Theme
-              catppuccin-nvim
-            ];
-            opt = [ ];
-          };
-        };
+  neovim = pkgs.neovim.override {
+    viAlias = true;
+    vimAlias = true;
+    configure = {
+      customRC = ''
+        " Use system clipboard by default
+        set clipboard=unnamedplus
+      '';
+      packages.myVimPackage = with pkgs.vimPlugins; {
+        start = [
+          # Core LazyVim plugins
+          pkgs.vimPlugins.lazy-nvim
+          pkgs.vimPlugins.mason-nvim
+          pkgs.vimPlugins.mason-lspconfig-nvim
+          pkgs.vimPlugins.nvim-lspconfig
+          pkgs.vimPlugins.nvim-treesitter.withAllGrammars
+          pkgs.vimPlugins.indent-blankline-nvim
+          pkgs.vimPlugins.nvim-cmp
+          pkgs.vimPlugins.cmp-nvim-lsp
+          pkgs.vimPlugins.cmp-buffer
+          pkgs.vimPlugins.cmp-path
+          pkgs.vimPlugins.cmp-cmdline
+          pkgs.vimPlugins.lualine-nvim
+          pkgs.vimPlugins.toggleterm-nvim
+          pkgs.vimPlugins.nvim-tree-lua
+          pkgs.vimPlugins.nvim-web-devicons
+          pkgs.vimPlugins.telescope-nvim
+          pkgs.vimPlugins.plenary-nvim
+          pkgs.vimPlugins.nvim-colorizer-lua
+          pkgs.vimPlugins.which-key-nvim
+          pkgs.vimPlugins.gitsigns-nvim
+          # Theme
+          pkgs.vimPlugins.catppuccin-nvim
+        ];
+        opt = [ ];
       };
+    };
+  };
 in
 {
   # List packages installed in system profile. To search, run:
@@ -91,7 +86,6 @@ in
       curl
       vim
       htop
-      btop
       bottom
       ripgrep
       fd
