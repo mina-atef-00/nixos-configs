@@ -96,7 +96,6 @@ in
         };
       };
     };
-  };
 
     # Direnv integration
     direnv = {
@@ -114,7 +113,6 @@ in
       viAlias = true;
       vimAlias = true;
     };
-  };
     
     # Configure DMS Shell as per official guide
     dankMaterialShell = {
