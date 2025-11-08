@@ -114,14 +114,9 @@ in
   # Services configuration
   services = {
     # Clipboard manager
-    wl-clipboard-hist = {
+    wl-clipboard-history = {
       enable = true;
-      settings = {
-        general = {
-          max_hist_items = 100;
-          max_item_size = 1024000;
-        };
-      };
+      maxItems = 100;
     };
 
     # Network tray
