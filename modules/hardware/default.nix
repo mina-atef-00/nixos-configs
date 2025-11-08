@@ -7,15 +7,7 @@
 }:
 
 {
-  # Bootloader configuration - GRUB for UEFI with NixOS generation support
-  boot.loader.grub = {
-    enable = true;
-    device = "nodev";
-    efiSupport = true;
-    useOSProber = true; # Detect other OSes like previous NixOS generations
-  };
-
-  boot.loader.efi.canTouchEfiVariables = true;
+  # Hardware-specific configurations only (excluding bootloader which is in base.nix)
 
   # File system configuration based on your current setup
   fileSystems."/" =
@@ -58,23 +50,26 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
-  # Enable audio with PipeWire
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
+  # Enable OpenGL support (already configured in hardware.graphics)
+  # Remove deprecated hardware.opengl configuration
+
+  # Firmware support
+  hardware.enableRedistributableFirmware = true;
+
+  # Network hardware
+  networking = {
+    useDHCP = lib.mkDefault true;
+    networkmanager.enable = true;
   };
 
-  # Enable printing (can be disabled later if not needed)
-  services.printing.enable = false;
-
-  # Enable Bluetooth
+  # Enable bluetooth
   hardware.bluetooth.enable = true;
   services.blueman.enable = false; # Disable blueman since DMS Shell may provide better integration
 
-  # Enable PulseAudio service (renamed from hardware.pulseaudio)
-  services.pulseaudio.enable = false;
+  # Enable audio with PipeWire (already configured in base.nix)
+  # Remove hardware.pulseaudio configuration
+
+  # Enable printing (can be disabled later if not needed)
+  services.printing.enable = false;
 
 }
