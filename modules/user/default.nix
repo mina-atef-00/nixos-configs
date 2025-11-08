@@ -8,9 +8,8 @@
 }:
 
 {
-  # Import the DMS Shell home module as per official guide and MangoWC
+  # Import only MangoWC module for now
   imports = [
-    inputs.dankMaterialShell.homeModules.dankMaterialShell.default
     inputs.mangowc.hmModules.mango
   ];
 
@@ -81,28 +80,6 @@
       vimAlias = true;
     };
   };
-
-  # Configure DMS Shell as per official guide
-  dankMaterialShell = {
-    enable = true;
-    enableSystemd = true; # Systemd service for auto-start
-    enableSystemMonitoring = true; # System monitoring widgets (dgop)
-    enableClipboard = true; # Clipboard history manager
-    enableVPN = false; # VPN management widget
-    enableBrightnessControl = true; # Backlight/brightness controls
-    enableColorPicker = true; # Color picker tool
-    enableDynamicTheming = true; # Wallpaper-based theming (matugen)
-    enableAudioWavelength = true; # Audio visualizer (cava)
-    enableCalendarEvents = true; # Calendar integration (khal)
-    enableSystemSound = true; # System sound effects
-
-    # Default settings that will be used on first launch
-    default.settings = {
-      theme = "dark";
-      dynamicTheming = true;
-    };
-  };
-  
 
   # Services configuration
   services = {
@@ -194,7 +171,6 @@
       # Start necessary services for MangoWC
       ${pkgs.xdg-desktop-portal-wlr}/bin/xdg-desktop-portal-wlr &
       ${pkgs.wlsunset}/bin/wlsunset -l 30.0556 -L 31.22 & # Cairo coordinates
-      # Note: DMS will be handled by its own module
     '';
   };
 
