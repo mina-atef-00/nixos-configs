@@ -200,9 +200,7 @@ in
     autostart_sh = ''
       # Start necessary services for MangoWC
       ${pkgs.xdg-desktop-portal-wlr}/bin/xdg-desktop-portal-wlr &
-      ${pkgs.swaync}/bin/swaync &
       ${pkgs.wlsunset}/bin/wlsunset -l 30.0556 -L 31.22 & # Cairo coordinates
-      ${pkgs.wl-clip-persist}/bin/wl-clip-persist &
       # Note: DMS will be handled by its own module
     '';
   };
