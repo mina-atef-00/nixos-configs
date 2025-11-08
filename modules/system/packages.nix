@@ -181,25 +181,20 @@ in
   fonts.packages = with pkgs; [
     # Adobe Source Han Sans/Serif (CJK fonts)
     source-han-sans
-    source-han-serif
 
     # Liberation fonts
     liberation_ttf
-    liberation-sans
 
     # Noto fonts (Google's font family)
     noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
+    noto-fonts-cjk-sans
+    noto-fonts-emoji-blob-bin
 
     # Ubuntu fonts
-    ubuntu_font_family
+    ubuntu-sans
 
     # GNU FreeFont
     freefont_ttf
-
-    # Ghostscript fonts
-    gsfonts
 
     # WenQuanYi fonts (Chinese)
     wqy_zenhei
@@ -208,7 +203,10 @@ in
     # Additional useful fonts
     fira-code
     fira-code-symbols
+    nerd-fonts.fira-code
     font-awesome
-    awesome-terminal-fonts
+
+    roboto
+    roboto-slab
   ];
 }
