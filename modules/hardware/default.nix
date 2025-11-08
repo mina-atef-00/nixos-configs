@@ -43,10 +43,10 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   # CPU microcode for Intel
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+ hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   # NVIDIA graphics drivers for RTX 2060
-  hardware.graphics = {
+ hardware.graphics = {
     enable = true;
     enable32Bit = true; # For gaming compatibility
   };
@@ -90,20 +90,4 @@
   # Enable printing (can be disabled later if not needed)
   services.printing.enable = false;
 
-  # Timezone (set to your location)
-  time.timeZone = "Africa/Cairo";
-
-  # Locale
-  i18n.defaultLocale = "en_US.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
-  };
 }
