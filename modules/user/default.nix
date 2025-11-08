@@ -7,23 +7,20 @@
   ...
 }:
 
-let
-  # Since all packages are now system-wide, we don't need to define them in user config
-  # The custom neovim should be defined in the system packages module
-in
 {
-  # Import the MangoWC home module
+  # Import the DMS Shell home module as per official guide and MangoWC
   imports = [
+    inputs.dankMaterialShell.homeModules.dankMaterialShell.default
     inputs.mangowc.hmModules.mango
- ];
+  ];
 
-  # Home Manager configuration
+ # Home Manager configuration
   home = {
     username = "mina";
     homeDirectory = "/home/mina";
     stateVersion = "25.05"; # Match the system version
 
-    # Package management - All packages moved to system level
+    # No package management here - all packages are system-wide
     packages = with pkgs; [
       # Only keep packages that are specifically needed in user profile
       # Most packages are now available system-wide
@@ -85,7 +82,26 @@ in
     };
   };
 
-  # No DMS Shell configuration for now due to module import issues
+  # Configure DMS Shell as per official guide
+  dankMaterialShell = {
+    enable = true;
+    enableSystemd = true; # Systemd service for auto-start
+    enableSystemMonitoring = true; # System monitoring widgets (dgop)
+    enableClipboard = true; # Clipboard history manager
+    enableVPN = false; # VPN management widget
+    enableBrightnessControl = true; # Backlight/brightness controls
+    enableColorPicker = true; # Color picker tool
+    enableDynamicTheming = true; # Wallpaper-based theming (matugen)
+    enableAudioWavelength = true; # Audio visualizer (cava)
+    enableCalendarEvents = true; # Calendar integration (khal)
+    enableSystemSound = true; # System sound effects
+
+    # Default settings that will be used on first launch
+    default.settings = {
+      theme = "dark";
+      dynamicTheming = true;
+    };
+  };
   
 
   # Services configuration
