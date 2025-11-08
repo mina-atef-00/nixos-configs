@@ -134,7 +134,6 @@ in
         dynamicTheming = true;
       };
     };
-  };
   
 
   # Services configuration
