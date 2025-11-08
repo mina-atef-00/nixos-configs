@@ -19,6 +19,9 @@
     homeDirectory = "/home/mina";
     stateVersion = "25.05"; # Match the system version
 
+    # Disable the version check to suppress the warning
+    enableNixpkgsReleaseCheck = false;
+
     # No package management here - all packages are system-wide
     packages = with pkgs; [
       # Only keep packages that are specifically needed in user profile

@@ -19,8 +19,8 @@
   # Configure video drivers for MangoWC
   services.xserver = {
     videoDrivers = [ "nvidia" ];
-    layout = "us,ar";
-    xkbOptions = "grp:win_space_toggle,caps:swapescape";
+    xkb.layout = "us,ar";
+    xkb.options = "grp:win_space_toggle,caps:swapescape";
   };
   hardware.graphics.enable = true;
 }

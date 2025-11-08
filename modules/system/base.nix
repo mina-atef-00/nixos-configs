@@ -95,7 +95,7 @@
   # services.printing.enable = true;
 
   # Enable sound.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -151,8 +151,10 @@
   };
 
   # Keep only the last 3 generations (current + 2 previous)
-  nix.settings.generations.max = 3;
-  nix.settings.generations.max-fallback = 5;
+  nix.settings.generations = {
+    max = 3;
+    maxFallback = 5;
+  };
 
   # Also set the profile generations to keep
 
@@ -172,7 +174,7 @@
   # Enable avahi
   services.avahi = {
     enable = true;
-    nssmdns = true;
+    nssmdns4 = true;
   };
 
   # Define how NixOS should be built.
