@@ -16,23 +16,23 @@ let
     };
   };
 
-  # Get the latest zen-browser from unstable
-  zen-browser = pkgs-unstable.zen-browser;
+  # Get the latest zen-browser from unstable with fallback
+  zen-browser = if pkgs-unstable ? zen-browser then pkgs-unstable.zen-browser else pkgs.firefox;
 
-  # Get the latest Vesktop from unstable
-  vesktop = pkgs-unstable.vesktop;
+  # Get the latest Vesktop from unstable with fallback
+  vesktop = if pkgs-unstable ? vesktop then pkgs-unstable.vesktop else pkgs.discord;
 
-  # Get the latest Steam from unstable
-  steam = pkgs-unstable.steam;
+  # Get the latest Steam from unstable with fallback
+  steam = if pkgs-unstable ? steam then pkgs-unstable.steam else pkgs.steam;
 
-  # Get the latest OBSidian from unstable
-  obsidian = pkgs-unstable.obsidian;
+  # Get the latest OBSidian from unstable with fallback
+  obsidian = if pkgs-unstable ? obsidian then pkgs-unstable.obsidian else pkgs.obsidian;
 
-  # Get the latest Thunderbird from unstable
-  thunderbird = pkgs-unstable.thunderbird;
+  # Get the latest Thunderbird from unstable with fallback
+  thunderbird = if pkgs-unstable ? thunderbird then pkgs-unstable.thunderbird else pkgs.thunderbird;
 
   # Get the latest Firefox from unstable (as fallback)
-  firefox = pkgs-unstable.firefox;
+  firefox = if pkgs-unstable ? firefox then pkgs-unstable.firefox else pkgs.firefox;
 
   # Get MangoWC from the input
   mangowc = inputs.mangowc.packages.${pkgs.system}.mangowc;
