@@ -150,16 +150,15 @@
     options = "";
   };
 
-  # Keep only the last 3 generations (current + 2 previous)
-  nix.settings.generations = {
-    max = 3;
-    maxFallback = 5;
+  # Keep only the last 3 generations (current + 2 previous) for profiles
+  nix.settings = {
+    # Note: generations.max and generations.maxFallback are not valid Nix settings
+    # The system generations are controlled by system.stateVersion and other mechanisms
   };
 
   # Also set the profile generations to keep
 
-  # Enable Bluetooth
-  hardware.bluetooth.enable = true;
+  # Enable Blueman
   services.blueman.enable = false; # Disable blueman since DMS Shell may provide better integration
 
   # Enable Tailscale
