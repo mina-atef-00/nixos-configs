@@ -16,8 +16,8 @@ let
     };
   };
 
-  # Get Zen Browser from the dedicated flake
-  zen-browser = inputs.zen-browser.packages.${pkgs.system}.zen-browser;
+  # Get Zen Browser from the dedicated flake with fallback
+  zen-browser = (inputs.zen-browser.packages.${pkgs.system}.zen-browser or pkgs.firefox);
 
   # Get the latest Vesktop from unstable with fallback
   vesktop = if pkgs-unstable ? vesktop then pkgs-unstable.vesktop else pkgs.discord;
