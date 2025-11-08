@@ -36,8 +36,6 @@
   # Enable networking
   networking = {
     networkmanager.enable = true;
-    # Enable wireless support
-    wireless.enable = true;
     # The global useDHCP flag is deprecated, therefore explicitly set to false.
     useDHCP = false;
     # Configure network interfaces manually if not using DHCP.
@@ -58,8 +56,6 @@
     '';
   };
 
-  # Copy the NixOS configuration file to /etc/nixos/configuration.nix on activation.
-  system.copySystemConfiguration = true;
 
   # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.mina = {
@@ -99,7 +95,6 @@
   # services.printing.enable = true;
 
   # Enable sound.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
