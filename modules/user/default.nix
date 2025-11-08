@@ -113,12 +113,6 @@ in
 
   # Services configuration
   services = {
-    # Clipboard manager
-    wl-clipboard-history = {
-      enable = true;
-      maxItems = 100;
-    };
-
     # Network tray
     network-manager-applet.enable = true;
 
