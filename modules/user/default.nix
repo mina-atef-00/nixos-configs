@@ -54,9 +54,9 @@ in
 
     # File management
     file = {
-      ".config/nvim".source = ../config/nvim;
-      ".config/mpv".source = ../config/mpv;
-      ".config/kitty".source = ../config/kitty;
+      ".config/nvim".source = ../../config/nvim;
+      ".config/mpv".source = ../../config/mpv;
+      ".config/kitty".source = ../../config/kitty;
     };
   };
 
