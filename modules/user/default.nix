@@ -15,7 +15,6 @@ let
       allowUnfree = true;
     };
   };
-  };
 
   # Get the latest zen-browser from unstable
   zen-browser = pkgs-unstable.zen-browser;
@@ -82,6 +81,7 @@ in
         nrs = "sudo nixos-rebuild switch --flake .#nixos";
         hms = "home-manager switch --flake .#nixos";
       };
+    };
     starship = {
       enable = true;
       settings = {
@@ -90,14 +90,11 @@ in
           success_symbol = "[→](bold green)";
           error_symbol = "[→](bold red)";
         };
-  };
         directory = {
           truncation_length = 3;
           truncation_symbol = "…/";
         };
-  };
       };
-  };
     };
   };
 
@@ -107,7 +104,6 @@ in
       nix-direnv = {
         enable = true;
       };
-  };
     };
   };
 
@@ -139,10 +135,8 @@ in
         theme = "dark";
         dynamicTheming = true;
       };
-  };
     };
   };
- };
   
 
   # Services configuration
@@ -155,11 +149,8 @@ in
           max_hist_items = 100;
           max_item_size = 1024000;
         };
-  };
       };
-  };
     };
-  };
 
     # Network tray
     network-manager-applet.enable = true;
@@ -169,7 +160,6 @@ in
       enable = true;
       enableSshSupport = true;
     };
-  };
   };
 
   # XDG configuration
@@ -195,9 +185,7 @@ in
         "audio/*" = "mpv.desktop";
         "video/*" = "mpv.desktop";
       };
-  };
     };
-  };
 
     # Desktop portal for Wayland
     desktopEntries = {
@@ -215,9 +203,7 @@ in
           "WebBrowser"
         ];
       };
-  };
     };
-  };
   };
 
   # Configure MangoWC via the home-manager module

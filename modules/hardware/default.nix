@@ -46,7 +46,7 @@
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   # NVIDIA graphics drivers for RTX 2060
- hardware.graphics = {
+  hardware.graphics = {
     enable = true;
     enable32Bit = true; # For gaming compatibility
   };
