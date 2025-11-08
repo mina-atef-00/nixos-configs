@@ -18,20 +18,20 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # File system configuration based on your current setup
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/e5a7a191-9c75-4a01-a9c2-1a910dcc7168";
-      fsType = "ext4";
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/6c9f0812-12a8-43ed-b7c3-774a1929981d"; # Will need to be updated with actual UUID after installation
+      fsType = "btrfs";
     };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/2210-3B3A";
+    "/boot" = {
+      device = "/dev/disk/by-uuid/3437-1D6B"; # Will need to be updated with actual UUID after installation
       fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
     };
+  };
 
- swapDevices =
-    [ { device = "/dev/disk/by-uuid/2e90d11a-5706-438a-b0f4-b1fb40b82a03"; }
-    ];
+  # Swap configuration (based on your zram0 setup)
+  swapDevices = [ ];
 
   # Enable zram swap
   zramSwap = {
@@ -46,7 +46,7 @@
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   # NVIDIA graphics drivers for RTX 2060
- hardware.graphics = {
+  hardware.graphics = {
     enable = true;
     enable32Bit = true; # For gaming compatibility
   };
@@ -56,6 +56,8 @@
     open = false; # Use proprietary driver for full RTX 2060 features
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
+    # Optimize for desktop use (set to true if using laptop)
+    laptop = false;
   };
 
   # Enable OpenGL support

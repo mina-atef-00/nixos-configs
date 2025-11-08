@@ -15,6 +15,7 @@ let
       allowUnfree = true;
     };
   };
+  };
 
   # Get the latest zen-browser from unstable
   zen-browser = pkgs-unstable.zen-browser;
@@ -64,20 +65,8 @@ in
       ".config/mpv".source = ./config/mpv;
       ".config/kitty".source = ./config/kitty;
     };
-
-    # Enable Kvantum theme engine
-    qt = {
-      enable = true;
-      platform = "wayland";
-      style.name = "kvantum";
-    };
-
-    # Configure Kvantum to use Colloid theme
-    qt.kvantum = {
-      enable = true;
-      package = pkgs.qt6.qtstyleplugin-kvantum;
-    };
   };
+
 
   # Programs configuration
   programs = {
@@ -93,13 +82,6 @@ in
         nrs = "sudo nixos-rebuild switch --flake .#nixos";
         hms = "home-manager switch --flake .#nixos";
       };
-      interactiveShellInit = ''
-        set fish_greeting
-        starship init fish | source
-      '';
-    };
-
-    # Starship prompt
     starship = {
       enable = true;
       settings = {
@@ -108,12 +90,16 @@ in
           success_symbol = "[→](bold green)";
           error_symbol = "[→](bold red)";
         };
+  };
         directory = {
           truncation_length = 3;
           truncation_symbol = "…/";
         };
+  };
       };
+  };
     };
+  };
 
     # Direnv integration
     direnv = {
@@ -121,7 +107,9 @@ in
       nix-direnv = {
         enable = true;
       };
+  };
     };
+  };
 
     # Neovim configuration - using system-installed custom neovim with local config
     neovim = {
@@ -130,6 +118,7 @@ in
       viAlias = true;
       vimAlias = true;
     };
+  };
     
     # Configure DMS Shell as per official guide
     dankMaterialShell = {
@@ -150,7 +139,9 @@ in
         theme = "dark";
         dynamicTheming = true;
       };
+  };
     };
+  };
  };
   
 
@@ -164,8 +155,11 @@ in
           max_hist_items = 100;
           max_item_size = 1024000;
         };
+  };
       };
+  };
     };
+  };
 
     # Network tray
     network-manager-applet.enable = true;
@@ -175,6 +169,7 @@ in
       enable = true;
       enableSshSupport = true;
     };
+  };
   };
 
   # XDG configuration
@@ -200,7 +195,9 @@ in
         "audio/*" = "mpv.desktop";
         "video/*" = "mpv.desktop";
       };
+  };
     };
+  };
 
     # Desktop portal for Wayland
     desktopEntries = {
@@ -218,7 +215,9 @@ in
           "WebBrowser"
         ];
       };
+  };
     };
+  };
   };
 
   # Configure MangoWC via the home-manager module

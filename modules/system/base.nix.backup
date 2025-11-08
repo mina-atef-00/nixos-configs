@@ -117,6 +117,7 @@
   # Enable Podman
   virtualisation.podman = {
     enable = true;
+    enableNixOsModule = true;
     dockerCompat = true; # Enable docker-compatible socket
     dockerSocket.enable = true; # Create the docker-compatible socket
     extraPackages = with pkgs; [
@@ -130,7 +131,7 @@
 
   # Enable NTFS support
   services.udisks2.enable = true;
-  boot.supportedFilesystems = [ "ntfs" "nfs" ];
+  boot.supportedFilesystems = [ "ntfs" ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -160,19 +161,17 @@
   nix.settings.generations.max-fallback = 5;
 
   # Also set the profile generations to keep
+  system.nixos.rebuild.switch.enable = true;
 
   # Enable Bluetooth
   hardware.bluetooth.enable = true;
   services.blueman.enable = false; # Disable blueman since DMS Shell may provide better integration
 
   # Enable Tailscale
-  # Enable NFS support
-  services.rpcbind.enable = true;
-
-
   services.tailscale.enable = true;
 
   # Enable NFS client
+  services.nfs.client.enable = true;
 
   # Enable avahi
   services.avahi = {
