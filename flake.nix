@@ -2,9 +2,9 @@
   description = "NixOS configuration with MangoWC and Dank Material Shell";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
 
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable-small";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -25,7 +25,7 @@
 
     # MangoWC with specific commit that's compatible with current wlroots
     mangowc = {
-      url = "github:LinuxCafeFederation/mango/99430890514b62c6a7b06b14a0e3d359e080115e";
+      url = "github:LinuxCafeFederation/mango";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
