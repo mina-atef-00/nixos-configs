@@ -7,7 +7,15 @@
 }:
 
 {
-  # Hardware-specific configurations only (excluding bootloader which is in base.nix)
+  # Bootloader configuration - GRUB for UEFI with NixOS generation support
+  boot.loader.grub = {
+    enable = true;
+    device = "nodev";
+    efiSupport = true;
+    useOSProber = true; # Detect other OSes like previous NixOS generations
+  };
+
+  boot.loader.efi.canTouchEfiVariables = true;
 
   # File system configuration based on your current setup
   fileSystems."/" =
@@ -67,7 +75,7 @@
   services.blueman.enable = false; # Disable blueman since DMS Shell may provide better integration
 
   # Enable audio with PipeWire (already configured in base.nix)
-  # Remove hardware.pulseaudio configuration
+  # Remove deprecated hardware.pulseaudio configuration
 
   # Enable printing (can be disabled later if not needed)
   services.printing.enable = false;
