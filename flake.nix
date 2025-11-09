@@ -17,13 +17,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # DMS Shell inputs as per official guide
-    dms = {
-      url = "github:DreamMaoMao/dms-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # MangoWC with specific commit that's compatible with current wlroots
+    # MangoWC (keeping disabled for now due to build issues)
     mangowc = {
       url = "github:LinuxCafeFederation/mango";
       inputs.nixpkgs.follows = "nixpkgs";
