@@ -7,9 +7,14 @@
 }:
 
 {
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.configurationLimit = 10;
+  # Bootloader - Use GRUB instead of systemd-boot
+  boot.loader.grub = {
+    enable = true;
+    device = "nodev";
+    efiSupport = true;
+    useOSProber = true; # Detect other OSes like previous NixOS generations
+  };
+
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Configure console keymap
@@ -150,15 +155,10 @@
     options = "";
   };
 
-  # Keep only the last 3 generations (current + 2 previous) for profiles
-  nix.settings = {
-    # Note: generations.max and generations.maxFallback are not valid Nix settings
-    # The system generations are controlled by system.stateVersion and other mechanisms
-  };
+  # Keep only the last 3 generations (current + 2 previous)
 
-  # Also set the profile generations to keep
-
-  # Enable Blueman
+  # Enable Bluetooth
+  hardware.bluetooth.enable = true;
   services.blueman.enable = false; # Disable blueman since DMS Shell may provide better integration
 
   # Enable Tailscale
@@ -173,7 +173,7 @@
   # Enable avahi
   services.avahi = {
     enable = true;
-    nssmdns4 = true;
+    nssmdns4 = true; # Changed from nssmdns to nssmdns4 as per deprecation warning
   };
 
   # Define how NixOS should be built.
