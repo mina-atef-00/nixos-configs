@@ -48,19 +48,16 @@
     interfaces.wlo1.useDHCP = true; # Adjust interface name as needed
   };
 
-  # Use UFW as firewall manager instead of iptables for easier management
-  services.ufw = {
+  # Use the standard NixOS firewall instead of UFW
+  networking.firewall = {
     enable = true;
-    # Allow outgoing connections by default
-    enableDefaultOutgoing = true;
-    # Allow incoming SSH on new port
     allowedTCPPorts = [ 2222 ]; # SSH on new port
-    # Additional allowed services can be added as needed
-    extraAllowed = [ ]; # Additional custom rules if needed
+    allowedUDPPorts = [ ]; # No specific UDP ports
+    # Allow all outgoing connections
+    allowOutbound = true; # Allow all outgoing connections
+    # Allow established connections back in
+    allowPing = false; # Disable ping unless needed for diagnostics
   };
-  
-  # Disable the default NixOS firewall to avoid conflicts with UFW
-  networking.firewall.enable = false;
 
 
   # Define a user account. Don't forget to set a password with 'passwd'.
