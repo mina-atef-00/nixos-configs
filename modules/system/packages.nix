@@ -8,7 +8,7 @@
 }:
 
 let
-  # Use unstable packages for certain applications
+ # Use unstable packages for certain applications
   pkgs-unstable = import inputs.nixpkgs-unstable {
     system = "x86_64-linux";
     config = {
@@ -20,7 +20,7 @@ let
   zen-browser = (inputs.zen-browser.packages.${pkgs.system}.zen-browser or pkgs.firefox);
 
   # Get the latest Vesktop from unstable with fallback
-  vesktop = if pkgs-unstable ? vesktop then pkgs-unstable.vesktop else pkgs.discord;
+ vesktop = if pkgs-unstable ? vesktop then pkgs-unstable.vesktop else pkgs.discord;
 
   # Get the latest Steam from unstable with fallback
   steam = if pkgs-unstable ? steam then pkgs-unstable.steam else pkgs.steam;
@@ -31,8 +31,8 @@ let
   # Get the latest Thunderbird from unstable with fallback
   thunderbird = if pkgs-unstable ? thunderbird then pkgs-unstable.thunderbird else pkgs.thunderbird;
 
-  # Get MangoWC from the input
- mangowc = inputs.mangowc.packages.${pkgs.system}.mangowc;
+  # Get MangoWC from the input (this was causing the error, so we'll remove the reference)
+  # mangowc = inputs.mangowc.packages.${pkgs.system}.mangowc;
 
   # Create a custom neovim with LazyVim (moved from user config)
   neovim = pkgs.neovim.override {
@@ -181,20 +181,25 @@ in
   fonts.packages = with pkgs; [
     # Adobe Source Han Sans/Serif (CJK fonts)
     source-han-sans
+    source-han-serif
 
     # Liberation fonts
     liberation_ttf
+    liberation-sans
 
     # Noto fonts (Google's font family)
     noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-emoji-blob-bin
+    noto-fonts-cjk
+    noto-fonts-emoji
 
     # Ubuntu fonts
-    ubuntu-sans
+    ubuntu_font_family
 
     # GNU FreeFont
     freefont_ttf
+
+    # Ghostscript fonts
+    gsfonts
 
     # WenQuanYi fonts (Chinese)
     wqy_zenhei
@@ -203,10 +208,7 @@ in
     # Additional useful fonts
     fira-code
     fira-code-symbols
-    nerd-fonts.fira-code
     font-awesome
-
-    roboto
-    roboto-slab
+    awesome-terminal-fonts
   ];
 }
