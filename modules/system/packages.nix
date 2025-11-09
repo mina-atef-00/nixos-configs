@@ -155,6 +155,9 @@ in
       # Wayland utilities
       wayland-protocols
       wl-clipboard
+       # Additional Wayland support for NVIDIA
+       xorg.xorgserver
+       xwayland
       wlr-randr
       grim
       slurp

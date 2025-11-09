@@ -56,6 +56,8 @@
     open = false; # Use proprietary driver for full RTX 2060 features
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
+    # Enable for better Wayland support
+    forceFullCompositionPipeline = true;
   };
 
   # Enable OpenGL support (already configured in hardware.graphics)
