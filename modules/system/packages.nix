@@ -102,6 +102,7 @@ in
       gitoxide
 
       # Terminal and shell
+       kitty
       fish
       starship
       direnv

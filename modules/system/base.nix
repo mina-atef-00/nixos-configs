@@ -175,9 +175,12 @@
 
   # Enable NFS client
 
-  # Enable SDDM display manager
+  # Enable SDDM display manager (with Wayland support for MangoWC)
   services.displayManager.sddm.enable = true;
- services.xserver.enable = true;
+ # Disable X server since MangoWC runs on Wayland
+  #services.xserver.enable = true;
+  # Enable Wayland support for SDDM
+  services.displayManager.sddm.wayland.enable = true;
 
   # Enable avahi
   services.avahi = {
