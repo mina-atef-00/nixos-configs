@@ -8,10 +8,11 @@
 }:
 
 {
-  # Import only essential modules (temporarily removing mangowc due to build issues)
-  imports = [
-    # inputs.mangowc.hmModules.mango  # Commented out due to build issues
-  ];
+  # Import only essential modules (temporarily removing mangowc and dms due to build issues)
+  # imports = [
+  #   inputs.dankMaterialShell.hmModules.dankMaterialShell.default
+  #   inputs.mangowc.hmModules.mango
+  # ];
 
  # Home Manager configuration
   home = {
