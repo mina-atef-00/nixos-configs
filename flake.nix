@@ -2,9 +2,9 @@
   description = "NixOS configuration with MangoWC and Dank Material Shell";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable-small";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -18,26 +18,14 @@
     };
 
     # DMS Shell inputs as per official guide
-    dgop = {
-      url = "github:AvengeMedia/dgop";
+    dms = {
+      url = "github:DreamMaoMao/dms-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    dms-cli = {
-      url = "github:AvengeMedia/danklinux";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    dankMaterialShell = {
-      url = "github:AvengeMedia/DankMaterialShell";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.dgop.follows = "dgop";
-      inputs.dms-cli.follows = "dms-cli";
-    };
-
-    # MangoWC inputs as per official guide
+    # MangoWC with specific commit that's compatible with current wlroots
     mangowc = {
-      url = "github:DreamMaoMao/mango";
+      url = "github:LinuxCafeFederation/mango/99430890514b62c6a7b06b14a0e3d359e080115e";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -70,7 +58,6 @@
               }
             ];
           };
-
         };
       };
     };

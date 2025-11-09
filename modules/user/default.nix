@@ -8,9 +8,9 @@
 }:
 
 {
-  # Import only MangoWC module for now
+  # Import only essential modules (temporarily removing mangowc due to build issues)
   imports = [
-    inputs.mangowc.hmModules.mango
+    # inputs.mangowc.hmModules.mango  # Commented out due to build issues
   ];
 
  # Home Manager configuration
@@ -140,51 +140,13 @@
     };
   };
 
-  # Configure MangoWC via the home-manager module
-  wayland.windowManager.mango = {
-    enable = true;
-    settings = ''
-      # MangoWC configuration based on your preferences
-      # Use super as the main modifier
-      super, Return exec foot
-      super, space exec fuzzel --no-fuzzy
-      super, q kill-client
-      super, left focus left
-      super, right focus right
-      super, up focus up
-      super, down focus down
-      super+shift, left move left
-      super+shift, right move right
-      super+shift, up move up
-      super+shift, down move down
-      super, f fullscreen
-      super, m quit
-      super, 1 tag 1
-      super, 2 tag 2
-      super, 3 tag 3
-      super, 4 tag 4
-      super, 5 tag 5
-      super+shift, 1 tagn 1
-      super+shift, 2 tagn 2
-      super+shift, 3 tagn 3
-      super+shift, 4 tagn 4
-      super+shift, 5 tagn 5
-    '';
-    autostart_sh = ''
-      # Start necessary services for MangoWC
-      ${pkgs.xdg-desktop-portal-wlr}/bin/xdg-desktop-portal-wlr &
-      ${pkgs.wlsunset}/bin/wlsunset -l 30.0556 -L 31.22 & # Cairo coordinates
-    '';
-  };
-
-
   # Environment variables
  home.sessionVariables = {
     EDITOR = "nvim"; # System-installed
     BROWSER = "zen-browser"; # System-installed
     TERMINAL = "kitty"; # System-installed
     READER = "zathura"; # System-installed
-    XDG_CURRENT_DESKTOP = "mangowc";
+    XDG_CURRENT_DESKTOP = "mangowc"; # Keep this for compatibility when mangowc is re-enabled
     XDG_SESSION_TYPE = "wayland";
     MOZ_ENABLE_WAYLAND = "1";
     QT_QPA_PLATFORM = "wayland";
