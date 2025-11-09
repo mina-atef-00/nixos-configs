@@ -48,18 +48,19 @@
     interfaces.wlo1.useDHCP = true; # Adjust interface name as needed
   };
 
-  # Set up the basic firewall
-  networking.firewall = {
+  # Use UFW as firewall manager instead of iptables for easier management
+  services.ufw = {
     enable = true;
-    allowedTCPPorts = [ 22 ]; # SSH
-    allowedUDPPorts = [ ]; # No specific UDP ports
-    # Enable rate limiting for SSH
-    extraCommands = ''
-      # Rate limit SSH attempts
-      ip46tables -A nixos-fw -p tcp --dport 22 -m state --state NEW -m recent --name ssh --set
-      ip46tables -A nixos-fw -p tcp --dport 22 -m state --state NEW -m recent --name ssh --update --seconds 60 --hitcount 4 -j nixos-fw-reject
-    '';
+    # Allow outgoing connections by default
+    enableDefaultOutgoing = true;
+    # Allow incoming SSH on new port
+    allowedTCPPorts = [ 2222 ]; # SSH on new port
+    # Additional allowed services can be added as needed
+    extraAllowed = [ ]; # Additional custom rules if needed
   };
+  
+  # Disable the default NixOS firewall to avoid conflicts with UFW
+  networking.firewall.enable = false;
 
 
   # Define a user account. Don't forget to set a password with 'passwd'.
@@ -85,13 +86,23 @@
   # Enable automatic login for the user (optional)
   # services.getty.autologinUser = "mina";
 
-  # Enable the OpenSSH daemon.
+  # Enable the OpenSSH daemon with hardened security.
   services.openssh = {
     enable = true;
+    ports = [ 2222 ]; # Change SSH port from default 22
     settings = {
-      PermitRootLogin = "no";
-      PasswordAuthentication = false;
-      KbdInteractiveAuthentication = true;
+      PermitRootLogin = "no"; # Disable root login
+      PasswordAuthentication = false; # Disable password authentication
+      KbdInteractiveAuthentication = true; # Disable keyboard-interactive authentication
+      PubkeyAuthentication = true; # Enable public key authentication only
+      PermitEmptyPasswords = false;
+      X11Forwarding = false;
+      AllowTcpForwarding = true;
+      GatewayPorts = "no";
+      AllowAgentForwarding = false;
+      MaxAuthTries = 15;
+      ClientAliveInterval = 300;
+      ClientAliveCountMax = 2;
     };
   };
 
