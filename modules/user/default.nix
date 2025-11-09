@@ -161,7 +161,7 @@
       
       # Key bindings with full paths for reliability
       bind=SUPER,Return,spawn,${pkgs.foot}/bin/foot
-      bind=SUPER,w,spawn,${pkgs.zen-browser}/bin/zen-browser
+      bind=SUPER,w,spawn,zen-browser
       bind=SUPER,q,killclient
       bind=SUPER+r,reload_config
       bind=SUPER+SHIFT,e,quit
