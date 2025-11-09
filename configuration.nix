@@ -17,9 +17,6 @@
 
     # Include system packages configuration
     ./modules/system/packages.nix
-
-    # Include desktop environment configuration
-    ./modules/desktop/mangowc.nix
   ];
 
   # Define how NixOS should be built.
