@@ -83,7 +83,7 @@
   programs.fish.enable = true;
 
   # Enable automatic login for the user (optional)
-  services.getty.autologinUser = "mina";
+  # services.getty.autologinUser = "mina";
 
   # Enable the OpenSSH daemon.
   services.openssh = {
