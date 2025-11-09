@@ -146,7 +146,7 @@
   wayland.windowManager.mango = {
     enable = true;
     settings = ''
-      # Minimal MangoWC configuration to avoid black screen
+      # Basic MangoWC configuration
       gappih = 5
       gappiv = 5
       gappoh = 10
@@ -155,12 +155,17 @@
       bordercolor = 0x44444ff
       focuscolor = 0x007aaff
       
-      # Essential key bindings only
-      bind=SUPER,Return,spawn,kitty
-      bind=SUPER,w,spawn,zen-browser
+      # Focus and behavior settings
+      sloppyfocus = 1
+      focus_on_activate = 1
+      
+      # Key bindings with full paths for reliability
+      bind=SUPER,Return,spawn,${pkgs.foot}/bin/foot
+      bind=SUPER,w,spawn,${pkgs.zen-browser}/bin/zen-browser
       bind=SUPER,q,killclient
       bind=SUPER+r,reload_config
       bind=SUPER+SHIFT,e,quit
+      bind=SUPER+SHIFT,q,quit
     '';
     autostart_sh = ''
       # Add any startup applications here

@@ -103,6 +103,8 @@ in
 
       # Terminal and shell
        kitty
+       foot
+       kitty
       fish
       starship
       direnv
