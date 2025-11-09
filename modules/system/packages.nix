@@ -104,10 +104,12 @@ in
       # Terminal and shell
        kitty
        foot
-       kitty
       fish
       starship
       direnv
+      eza
+      gvfs
+      libinput
 
       # Development tools
       nodejs
@@ -119,10 +121,12 @@ in
       gnumake
       cmake
       gitAndTools.gitFull
+      plymouth
 
       # Media and graphics
       mpv
       ffmpeg
+      ffmpegthumbnailer
       imagemagick
 
       # Browsers
@@ -133,6 +137,28 @@ in
 
       # Gaming
       steam
+      SDL2
+      protontricks
+      mangohud
+      goverlay
+      gamemode
+
+      libusb1
+      udev
+
+      # Additional libraries for better compatibility
+      xorg.libXcursor
+      xorg.libXi
+      xorg.libXinerama
+      xorg.libXScrnSaver
+      xorg.libXcomposite
+      xorg.libXdamage
+      xorg.libXrender
+      xorg.libXext
+
+      # Fix for Xwayland symbol errors
+      libkrb5
+      keyutils
 
       # Productivity
       obsidian
@@ -142,6 +168,11 @@ in
       # Audio/video
       pavucontrol
       playerctl
+
+      xfce.thunar
+      xfce.thunar-volman
+      xfce.thunar-archive
+      xfce.tumbler
 
       # File management
       unzip
@@ -216,10 +247,17 @@ in
     # Additional useful fonts
     fira-code
     fira-code-symbols
-    nerd-fonts.fira-code
     font-awesome
 
     roboto
     roboto-slab
+
+    nerd-fonts.fira-code
+    nerd-fonts.droid-sans-mono
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.meslo-lg
+    nerd-fonts.hack
+
+    inter
   ];
 }

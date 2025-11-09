@@ -125,6 +125,82 @@
       };
     };
 
+
+    kitty = {
+      enable = true;
+      settings = {
+        # Use configured shell based on defaultShell variable
+        shell = "/usr/bin/fish";
+
+        font_size = 14;
+        wheel_scroll_min_lines = 1;
+        window_padding_width = 4;
+        confirm_os_window_close = 0;
+        scrollback_lines = 10000;
+        enable_audio_bell = false;
+        mouse_hide_wait = 60;
+        cursor_trail = 1;
+        tab_fade = 1;
+        active_tab_font_style = "bold";
+        inactive_tab_font_style = "bold";
+        tab_bar_edge = "top";
+        tab_bar_margin_width = 0;
+        tab_bar_style = "powerline";
+        #tab_bar_style = "fade";
+        enabled_layouts = "splits";
+      };
+      extraConfig = ''
+
+        # Clipboard
+        map ctrl+shift+v        paste_from_selection
+        map shift+insert        paste_from_selection
+
+        # Scrolling
+        map ctrl+shift+up        scroll_line_up
+        map ctrl+shift+down      scroll_line_down
+        map ctrl+shift+k         scroll_line_up
+        map ctrl+shift+j         scroll_line_down
+        map ctrl+shift+page_up   scroll_page_up
+        map ctrl+shift+page_down scroll_page_down
+        map ctrl+shift+home      scroll_home
+        map ctrl+shift+end       scroll_end
+        map ctrl+shift+h         show_scrollback
+
+        # Window management
+        map alt+n               new_os_window
+        map alt+w               close_window
+        map ctrl+shift+enter    launch --location=hsplit
+        map ctrl+shift+s        launch --location=vsplit
+        map ctrl+shift+]        next_window
+        map ctrl+shift+[        previous_window
+        map ctrl+shift+f        move_window_forward
+        map ctrl+shift+b        move_window_backward
+        map ctrl+shift+`        move_window_to_top
+        map ctrl+shift+1        first_window
+        map ctrl+shift+2        second_window
+        map ctrl+shift+3        third_window
+        map ctrl+shift+4        fourth_window
+        map ctrl+shift+5        fifth_window
+        map ctrl+shift+6        sixth_window
+        map ctrl+shift+7        seventh_window
+        map ctrl+shift+8        eighth_window
+        map ctrl+shift+9        ninth_window # Tab management
+        map ctrl+shift+0        tenth_window
+        map ctrl+shift+right    next_tab
+        map ctrl+shift+left     previous_tab
+        map ctrl+shift+t        new_tab
+        map ctrl+shift+q        close_tab
+        map ctrl+shift+l        next_layout
+        map ctrl+shift+.        move_tab_forward
+        map ctrl+shift+,        move_tab_backward
+
+        # Miscellaneous
+        map ctrl+shift+up      increase_font_size
+        map ctrl+shift+down    decrease_font_size
+        map ctrl+shift+backspace restore_font_size
+      '';
+    };
+
     # Direnv integration
     direnv = {
       enable = true;
@@ -133,6 +209,7 @@
       };
     };
 
+
     # Neovim configuration - using system-installed custom neovim with local config
     neovim = {
       enable = true;
@@ -140,91 +217,79 @@
       viAlias = true;
       vimAlias = true;
     };
-  };
 
-  # Window manager configuration
-  wayland.windowManager.mango = {
-    enable = true;
-    settings = ''
-      # Basic MangoWC configuration
-      gappih = 5
-      gappiv = 5
-      gappoh = 10
-      gappov = 10
-      borderpx = 2
-      bordercolor = 0x44444ff
-      focuscolor = 0x007aaff
-      
-      # Focus and behavior settings
-      sloppyfocus = 1
-      focus_on_activate = 1
-      
-      # Key bindings with full paths for reliability
-      bind=SUPER,Return,spawn,${pkgs.foot}/bin/foot
-      bind=SUPER,w,spawn,zen-browser
-      bind=SUPER,q,killclient
-      bind=SUPER+r,reload_config
-      bind=SUPER+SHIFT,e,quit
-      bind=SUPER+SHIFT,q,quit
-    '';
-    autostart_sh = ''
-      # Add any startup applications here
-      sleep 2  # Allow time for WM to initialize
-    '';
-  };
-  # Services configuration
-  services = {
-    # Network tray
-    network-manager-applet.enable = true;
 
-    # GPG agent
-    gpg-agent = {
+    # Window manager configuration
+    wayland.windowManager.mango = {
       enable = true;
-      enableSshSupport = true;
-    };
-  };
-
-  # XDG configuration
- xdg = {
-    enable = true;
-
-    # Mime types
-    mimeApps = {
-      enable = true;
-      defaultApplications = {
-        "text/html" = "zen-browser.desktop";
-        "x-scheme-handler/http" = "zen-browser.desktop";
-        "x-scheme-handler/https" = "zen-browser.desktop";
-        "x-scheme-handler/about" = "zen-browser.desktop";
-        "x-scheme-handler/ftp" = "zen-browser.desktop";
-        "x-scheme-handler/chrome" = "zen-browser.desktop";
-        "application/x-extension-htm" = "zen-browser.desktop";
-        "application/x-extension-html" = "zen-browser.desktop";
-        "application/x-extension-shtml" = "zen-browser.desktop";
-        "application/xhtml+xml" = "zen-browser.desktop";
-        "application/x-extension-xhtml" = "zen-browser.desktop";
-        "application/x-extension-xht" = "zen-browser.desktop";
-        "audio/*" = "mpv.desktop";
-        "video/*" = "mpv.desktop";
-      };
+      settings = ''
+        # Basic MangoWC configuration
+        gappih = 5
+        gappiv = 5
+        gappoh = 10
+        gappov = 10
+        borderpx = 2
+        bordercolor = 0x44444ff
+        focuscolor = 0x007aaff
+        
+        # Focus and behavior settings
+        sloppyfocus = 1
+        focus_on_activate = 1
+        
+        # Key bindings with full paths for reliability
+        bind=SUPER,Return,spawn,${pkgs.foot}/bin/foot
+        bind=SUPER,w,spawn,zen-browser
+        bind=SUPER,q,killclient
+        bind=SUPER+r,reload_config
+        bind=SUPER+SHIFT,e,quit
+        bind=SUPER+SHIFT,q,quit
+      '';
+      autostart_sh = ''
+        # Add any startup applications here
+        sleep 2  # Allow time for WM to initialize
+      '';
     };
 
-    # Desktop portal for Wayland
-    desktopEntries = {
-      zen-browser = {
-        name = "Zen Browser";
-        exec = "zen %U";
-        type = "Application";
-        mimeType = [
-          "text/html"
-          "x-scheme-handler/http"
-          "x-scheme-handler/https"
-        ];
-        categories = [
-          "Network"
-          "WebBrowser"
-        ];
-      };
+    # XDG configuration
+    xdg = {
+        enable = true;
+        # Mime types
+        mimeApps = {
+          enable = true;
+          defaultApplications = {
+            "text/html" = "zen-browser.desktop";
+            "x-scheme-handler/http" = "zen-browser.desktop";
+            "x-scheme-handler/https" = "zen-browser.desktop";
+            "x-scheme-handler/about" = "zen-browser.desktop";
+            "x-scheme-handler/ftp" = "zen-browser.desktop";
+            "x-scheme-handler/chrome" = "zen-browser.desktop";
+            "application/x-extension-htm" = "zen-browser.desktop";
+            "application/x-extension-html" = "zen-browser.desktop";
+            "application/x-extension-shtml" = "zen-browser.desktop";
+            "application/xhtml+xml" = "zen-browser.desktop";
+            "application/x-extension-xhtml" = "zen-browser.desktop";
+            "application/x-extension-xht" = "zen-browser.desktop";
+            "audio/*" = "mpv.desktop";
+            "video/*" = "mpv.desktop";
+          };
+        };
+        # Desktop portal for Wayland
+        desktopEntries = {
+          zen-browser = {
+            name = "Zen Browser";
+            exec = "zen %U";
+            type = "Application";
+            mimeType = [
+              "text/html"
+              "x-scheme-handler/http"
+              "x-scheme-handler/https"
+            ];
+            categories = [
+              "Network"
+              "WebBrowser"
+            ];
+          };
+        };
     };
   };
 
@@ -246,6 +311,6 @@
     # Additional environment variables for NVIDIA/Wayland compatibility
     WLR_NO_HARDWARE_CURSORS = "1";
     WLR_RENDERER_ALLOW_SOFTWARE = "1";
-  };
+ };
 
 }

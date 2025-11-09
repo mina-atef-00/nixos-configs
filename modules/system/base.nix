@@ -8,7 +8,7 @@
 
 {
   # Bootloader - Use GRUB instead of systemd-boot
-  boot.loader.grub = {
+ boot.loader.grub = {
     enable = true;
     device = "nodev";
     efiSupport = true;
@@ -16,6 +16,8 @@
   };
 
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.plymouth.enable = true;
+  boot.kernelModules = [ "v4l2loopback" "uinput" "xpad"];
 
   # Configure console keymap
   console.keyMap = "us";
@@ -102,6 +104,10 @@
     };
   };
 
+
+  # upower.enable = false; # Power management (required for DMS battery monitoring)
+
+
   # Printing is disabled by default but can be enabled if needed.
   # To enable printing, uncomment the next line:
   # services.printing.enable = true;
@@ -112,8 +118,7 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+    wireplumber.enable = true; 
   };
 
   # Enable flatpak support
@@ -128,10 +133,6 @@
       podman-compose
     ];
   };
-
-  # Enable ZRAM
-  zramSwap.enable = true;
-  zramSwap.memoryPercent = 50;
 
   # Enable NTFS support
   services.udisks2.enable = true;
@@ -181,23 +182,24 @@
 
   services.tailscale.enable = true;
 
+
+  # Network tray
+  services.network-manager-applet.enable = false;
+
+  # # GPG agent
+  # gservices.pg-agent = {
+  #   enable = true;
+  #   enableSshSupport = true;
+  # };
+
   # Enable NFS client
 
   # Enable SDDM display manager (with Wayland support for MangoWC)
-  services.displayManager.sddm.enable = true;
-  #services.xserver.enable = true;
-  # Enable Wayland support for SDDM
-  services.displayManager.sddm.wayland.enable = true;
-  # Configure keyboard layout for SDDM
-  services.displayManager.sddm.keyboard = {
-    layout = "us";
-    variant = "";
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
   };
- # Disable X server since MangoWC runs on Wayland
-  #services.xserver.enable = true;
-  # Enable Wayland support for SDDM
-  services.displayManager.sddm.wayland.enable = true;
-
+  
   # Enable avahi
   services.avahi = {
     enable = true;

@@ -7,16 +7,6 @@
 }:
 
 {
-  # Bootloader configuration - GRUB for UEFI with NixOS generation support
-  boot.loader.grub = {
-    enable = true;
-    device = "nodev";
-    efiSupport = true;
-    useOSProber = true; # Detect other OSes like previous NixOS generations
-  };
-
-  boot.loader.efi.canTouchEfiVariables = true;
-
   # File system configuration based on your current setup
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/e5a7a191-9c75-4a01-a9c2-1a910dcc7168";
@@ -33,11 +23,11 @@
     [ { device = "/dev/disk/by-uuid/2e90d11a-5706-438a-b0f4-b1fb40b82a03"; }
     ];
 
-  # Enable zram swap
-  zramSwap = {
-    enable = true;
-    memoryPercent = 50; # Use up to 50% of RAM for zram swap
-  };
+  # # Enable zram swap
+  # zramSwap = {
+  #   enable = true;
+  #   memoryPercent = 50; # Use up to 50% of RAM for zram swap
+  # };
 
   # Hardware configuration
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
@@ -58,6 +48,12 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
     # Enable for better Wayland support
     forceFullCompositionPipeline = true;
+    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
+    powerManagement.enable = false;
+    # Fine-grained power management. Turns off GPU when not in use.
+    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
+    powerManagement.finegrained = false;
+
   };
 
   # Enable OpenGL support (already configured in hardware.graphics)
@@ -74,7 +70,7 @@
 
   # Enable bluetooth
   hardware.bluetooth.enable = true;
-  services.blueman.enable = false; # Disable blueman since DMS Shell may provide better integration
+  services.blueman.enable = true; # Disable blueman since DMS Shell may provide better integration
 
   # Enable audio with PipeWire (already configured in base.nix)
   # Remove deprecated hardware.pulseaudio configuration
