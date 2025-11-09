@@ -164,6 +164,18 @@
 
   # Enable Bluetooth
   hardware.bluetooth.enable = true;
+  # Power management settings to prevent sleep issues with Wayland
+  services.logind = {
+    lidSwitch = "ignore";
+    lidSwitchDocked = "ignore";
+    lidSwitchExternalPower = "ignore";
+    powerKey = "ignore";
+    suspendKey = "ignore";
+    handlePowerKey = false;
+    handleSuspendKey = false;
+    handleHibernateKey = false;
+    handleLidSwitch = false;
+  };
   services.blueman.enable = false; # Disable blueman since DMS Shell may provide better integration
 
   # Enable Tailscale
