@@ -185,18 +185,21 @@ in
 
     # Liberation fonts
     liberation_ttf
-    liberation_mono
+    liberation-sans
 
     # Noto fonts (Google's font family)
     noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-emoji-blob-bin
+    noto-fonts-cjk
+    noto-fonts-emoji
 
     # Ubuntu fonts
-    ubuntu-sans
+    ubuntu_font_family
 
     # GNU FreeFont
     freefont_ttf
+
+    # Ghostscript fonts
+    gsfonts
 
     # WenQuanYi fonts (Chinese)
     wqy_zenhei
@@ -205,10 +208,7 @@ in
     # Additional useful fonts
     fira-code
     fira-code-symbols
-    nerd-fonts.fira-code
     font-awesome
-
-    roboto
-    roboto-slab
+    awesome-terminal-fonts
   ];
 }
