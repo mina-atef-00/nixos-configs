@@ -171,10 +171,6 @@
     lidSwitchExternalPower = "ignore";
     powerKey = "ignore";
     suspendKey = "ignore";
-    handlePowerKey = false;
-    handleSuspendKey = false;
-    handleHibernateKey = false;
-    handleLidSwitch = false;
   };
   services.blueman.enable = false; # Disable blueman since DMS Shell may provide better integration
 
