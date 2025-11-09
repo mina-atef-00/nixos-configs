@@ -163,6 +163,12 @@ in
       # KDE themes
       colloid-kde
 
+      # Icon themes
+      papirus-icon-theme
+
+      # Cursor themes
+      numix-cursor-theme
+
       # Add any additional system-wide packages here
     ]
     ++ [
