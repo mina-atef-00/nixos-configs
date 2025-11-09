@@ -8,11 +8,11 @@
 }:
 
 {
-  # Import only essential modules (temporarily removing mangowc and dms due to build issues)
-  # imports = [
-  #   inputs.dankMaterialShell.hmModules.dankMaterialShell.default
-  #   inputs.mangowc.hmModules.mango
-  # ];
+  # Import modules including MangoWC
+ imports = [
+    # Add mango hm module
+    inputs.mango.hmModules.mango
+  ];
 
  # Home Manager configuration
   home = {
@@ -142,6 +142,18 @@
     };
   };
 
+  # Window manager configuration
+  wayland.windowManager.mango = {
+    enable = true;
+    settings = ''
+      # MangoWC configuration will go here
+      # See config.conf for details
+    '';
+    autostart_sh = ''
+      # MangoWC autostart commands will go here
+      # See autostart.sh for details
+    '';
+  };
   # Services configuration
   services = {
     # Network tray

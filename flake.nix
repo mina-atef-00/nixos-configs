@@ -17,6 +17,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # MangoWC window manager
+    mango = {
+      url = "github:DreamMaoMao/mango";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
@@ -34,6 +40,11 @@
             specialArgs = { inherit inputs; };
             modules = [
               ./configuration.nix
+                # Add mango nixos module
+                inputs.mango.nixosModules.mango
+                {
+                  programs.mango.enable = true;
+                }
               inputs.home-manager.nixosModules.home-manager
               {
                 home-manager = {
