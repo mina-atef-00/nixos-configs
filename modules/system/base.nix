@@ -48,16 +48,15 @@
     interfaces.wlo1.useDHCP = true; # Adjust interface name as needed
   };
 
-  # Use the standard NixOS firewall instead of UFW
+  # Use the standard NixOS firewall with proper configuration
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [ 2222 ]; # SSH on new port
     allowedUDPPorts = [ ]; # No specific UDP ports
-    # Allow all outgoing connections
-    allowOutbound = true; # Allow all outgoing connections
-    # Allow established connections back in
+    # NixOS firewall allows established/related connections by default (includes outgoing)
+    # No need to explicitly allow outgoing connections - this happens automatically
     allowPing = false; # Disable ping unless needed for diagnostics
-  };
+ };
 
 
   # Define a user account. Don't forget to set a password with 'passwd'.
