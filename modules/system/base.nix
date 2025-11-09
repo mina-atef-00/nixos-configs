@@ -169,10 +169,8 @@
   # Enable NFS client
 
   # Enable SDDM display manager
- services.xserver = {
-    enable = true;
-    displayManager.sddm.enable = true;
-  };
+  services.displayManager.sddm.enable = true;
+ services.xserver.enable = true;
 
   # Enable avahi
   services.avahi = {
