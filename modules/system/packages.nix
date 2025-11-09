@@ -16,8 +16,7 @@ let
     };
   };
 
-  # Get Zen Browser from the dedicated flake with fallback
-  zen-browser = (inputs.zen-browser.packages.${pkgs.system}.zen-browser or pkgs.firefox);
+  
 
   # Get the latest Vesktop from unstable with fallback
  vesktop = if pkgs-unstable ? vesktop then pkgs-unstable.vesktop else pkgs.discord;
@@ -130,7 +129,7 @@ in
       imagemagick
 
       # Browsers
-      zen-browser
+      inputs.zen-browser.packages.${pkgs.system}.default or inputs.zen-browser.packages.${pkgs.system}.twilight or inputs.zen-browser.packages.${pkgs.system}.beta
 
       # Communication
       vesktop
@@ -171,7 +170,7 @@ in
 
       xfce.thunar
       xfce.thunar-volman
-      xfce.thunar-archive
+      xfce.thunar-archive-plugin
       xfce.tumbler
 
       # File management
@@ -216,7 +215,7 @@ in
   # Set environment variables
   environment.variables = {
     EDITOR = "nvim";
-    BROWSER = "zen-browser";
+    BROWSER = "zen";
     TERMINAL = "kitty";
   };
 

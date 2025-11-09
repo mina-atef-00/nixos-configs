@@ -173,7 +173,7 @@
     powerKey = "ignore";
     suspendKey = "ignore";
   };
-  services.blueman.enable = false; # Disable blueman since DMS Shell may provide better integration
+  # Note: blueman is configured in hardware module
 
   # Enable Tailscale
   # Enable NFS support
@@ -182,15 +182,7 @@
 
   services.tailscale.enable = true;
 
-
-  # Network tray
-  services.network-manager-applet.enable = false;
-
-  # # GPG agent
-  # gservices.pg-agent = {
-  #   enable = true;
-  #   enableSshSupport = true;
-  # };
+  
 
   # Enable NFS client
 

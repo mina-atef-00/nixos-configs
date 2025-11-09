@@ -1,18 +1,11 @@
-# User configuration module
-{
-  config,
-  pkgs,
-  lib,
-  inputs,
-  ...
-}:
+{ config, pkgs, lib, inputs, ... }:
 
 {
   # Import modules including MangoWC
  imports = [
-    # Add mango hm module
-    inputs.mango.hmModules.mango
-  ];
+     # Add mango hm module
+     inputs.mango.hmModules.mango
+   ];
 
  # Home Manager configuration
   home = {
@@ -37,6 +30,36 @@
     };
   };
 
+  # Window manager configuration - this is where MangoWM should be configured in Home Manager
+ wayland.windowManager.mango = {
+    enable = true;
+    settings = ''
+      # Basic MangoWC configuration
+      gappih = 5
+      gappiv = 5
+      gappoh = 10
+      gappov = 10
+      borderpx = 2
+      bordercolor = 0x444ff
+      focuscolor = 0x07aff
+      
+      # Focus and behavior settings
+      sloppyfocus = 1
+      focus_on_activate = 1
+      
+      # Key bindings with full paths for reliability
+      bind=SUPER,Return,spawn,${pkgs.foot}/bin/foot
+      bind=SUPER,w,spawn,zen
+      bind=SUPER,q,killclient
+      bind=SUPER+r,reload_config
+      bind=SUPER+SHIFT,e,quit
+      bind=SUPER+SHIFT,q,quit
+    '';
+    autostart_sh = ''
+      # Add any startup applications here
+      sleep 2  # Allow time for WM to initialize
+    '';
+  };
 
   # Programs configuration
   programs = {
@@ -102,7 +125,6 @@
         syschk = "nix flake check --all-systems --extra-experimental-features 'nix-command flakes'"; # Check flake validity
         sysgc = "sudo nix-collect-garbage && sudo nix-store --gc"; # Full system garbage collection
         sysdf = "nix store optimise";                            # Optimize nix store
-        
         # Development shortcuts
         cdnix = "cd ~/nixos-configs";                            # Go to nixos configs directory
         vimnix = "nvim ~/nixos-configs";                         # Open nixos configs in vim
@@ -136,7 +158,7 @@
         wheel_scroll_min_lines = 1;
         window_padding_width = 4;
         confirm_os_window_close = 0;
-        scrollback_lines = 10000;
+        scrollback_lines = 1000;
         enable_audio_bell = false;
         mouse_hide_wait = 60;
         cursor_trail = 1;
@@ -150,7 +172,6 @@
         enabled_layouts = "splits";
       };
       extraConfig = ''
-
         # Clipboard
         map ctrl+shift+v        paste_from_selection
         map shift+insert        paste_from_selection
@@ -217,86 +238,54 @@
       viAlias = true;
       vimAlias = true;
     };
+  };
 
-
-    # Window manager configuration
-    wayland.windowManager.mango = {
+  # XDG configuration
+  xdg = {
       enable = true;
-      settings = ''
-        # Basic MangoWC configuration
-        gappih = 5
-        gappiv = 5
-        gappoh = 10
-        gappov = 10
-        borderpx = 2
-        bordercolor = 0x44444ff
-        focuscolor = 0x007aaff
-        
-        # Focus and behavior settings
-        sloppyfocus = 1
-        focus_on_activate = 1
-        
-        # Key bindings with full paths for reliability
-        bind=SUPER,Return,spawn,${pkgs.foot}/bin/foot
-        bind=SUPER,w,spawn,zen-browser
-        bind=SUPER,q,killclient
-        bind=SUPER+r,reload_config
-        bind=SUPER+SHIFT,e,quit
-        bind=SUPER+SHIFT,q,quit
-      '';
-      autostart_sh = ''
-        # Add any startup applications here
-        sleep 2  # Allow time for WM to initialize
-      '';
-    };
-
-    # XDG configuration
-    xdg = {
+      # Mime types
+      mimeApps = {
         enable = true;
-        # Mime types
-        mimeApps = {
-          enable = true;
-          defaultApplications = {
-            "text/html" = "zen-browser.desktop";
-            "x-scheme-handler/http" = "zen-browser.desktop";
-            "x-scheme-handler/https" = "zen-browser.desktop";
-            "x-scheme-handler/about" = "zen-browser.desktop";
-            "x-scheme-handler/ftp" = "zen-browser.desktop";
-            "x-scheme-handler/chrome" = "zen-browser.desktop";
-            "application/x-extension-htm" = "zen-browser.desktop";
-            "application/x-extension-html" = "zen-browser.desktop";
-            "application/x-extension-shtml" = "zen-browser.desktop";
-            "application/xhtml+xml" = "zen-browser.desktop";
-            "application/x-extension-xhtml" = "zen-browser.desktop";
-            "application/x-extension-xht" = "zen-browser.desktop";
-            "audio/*" = "mpv.desktop";
-            "video/*" = "mpv.desktop";
-          };
+        defaultApplications = {
+          "text/html" = "zen-browser.desktop";
+          "x-scheme-handler/http" = "zen-browser.desktop";
+          "x-scheme-handler/https" = "zen-browser.desktop";
+          "x-scheme-handler/about" = "zen-browser.desktop";
+          "x-scheme-handler/ftp" = "zen-browser.desktop";
+          "x-scheme-handler/chrome" = "zen-browser.desktop";
+          "application/x-extension-htm" = "zen-browser.desktop";
+          "application/x-extension-html" = "zen-browser.desktop";
+          "application/x-extension-shtml" = "zen-browser.desktop";
+          "application/xhtml+xml" = "zen-browser.desktop";
+          "application/x-extension-xhtml" = "zen-browser.desktop";
+          "application/x-extension-xht" = "zen-browser.desktop";
+          "audio/*" = "mpv.desktop";
+          "video/*" = "mpv.desktop";
         };
-        # Desktop portal for Wayland
-        desktopEntries = {
-          zen-browser = {
-            name = "Zen Browser";
-            exec = "zen %U";
-            type = "Application";
-            mimeType = [
-              "text/html"
-              "x-scheme-handler/http"
-              "x-scheme-handler/https"
-            ];
-            categories = [
-              "Network"
-              "WebBrowser"
-            ];
-          };
+      };
+      # Desktop portal for Wayland
+      desktopEntries = {
+        zen-browser = {
+          name = "Zen Browser";
+          exec = "zen %U";
+          type = "Application";
+          mimeType = [
+            "text/html"
+            "x-scheme-handler/http"
+            "x-scheme-handler/https"
+          ];
+          categories = [
+            "Network"
+            "WebBrowser"
+          ];
         };
-    };
+      };
   };
 
   # Environment variables
  home.sessionVariables = {
     EDITOR = "nvim"; # System-installed
-    BROWSER = "zen-browser"; # System-installed
+    # BROWSER = "zen"; # Set in system packages instead
     TERMINAL = "kitty"; # System-installed
     READER = "zathura"; # System-installed
     XDG_CURRENT_DESKTOP = "mangowc"; # Keep this for compatibility when mangowc is re-enabled
@@ -312,5 +301,4 @@
     WLR_NO_HARDWARE_CURSORS = "1";
     WLR_RENDERER_ALLOW_SOFTWARE = "1";
  };
-
 }
