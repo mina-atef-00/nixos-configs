@@ -100,8 +100,6 @@
   # services.printing.enable = true;
 
   # Enable sound.
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -173,7 +171,7 @@
   # Enable avahi
   services.avahi = {
     enable = true;
-    nssmdns4 = true; # Changed from nssmdns to nssmdns4 as per deprecation warning
+    nssmdns4 = true;
   };
 
   # Define how NixOS should be built.
