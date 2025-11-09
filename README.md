@@ -28,6 +28,8 @@ The configuration is organized into several modules:
 - Gaming-ready setup with latest NVIDIA drivers
 - Wayland-focused with proper audio/video support via PipeWire
 - Aligned with official MangoWC and DMS Shell installation guides
+- Custom keybindings: SUPER+Return for Kitty terminal, SUPER+w for Zen Browser
+
 
 ## Installation
 

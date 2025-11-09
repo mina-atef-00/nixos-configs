@@ -146,12 +146,76 @@
   wayland.windowManager.mango = {
     enable = true;
     settings = ''
-      # MangoWC configuration will go here
-      # See config.conf for details
+      # Basic settings
+      gappih = 5
+      gappiv = 5
+      gappoh = 10
+      gappov = 10
+      borderpx = 4
+      bordercolor = 0x44444ff
+      focuscolor = 0xad741fff
+      urgentcolor = 0xad401fff
+      
+      # Animations
+      animations = 1
+      animation_duration_move = 500
+      animation_duration_open = 400
+      animation_duration_tag = 350
+      animation_duration_close = 800
+      
+      # Layout settings
+      default_mfact = 0.55
+      default_nmaster = 1
+      
+      # Focus settings
+      sloppyfocus = 1
+      focus_on_activate = 1
+      
+      # Keyboard settings
+      repeat_rate = 25
+      repeat_delay = 600
+      
+      # Key bindings
+      bind=SUPER,Return,spawn,kitty
+      bind=SUPER,w,spawn,zen-browser
+      bind=SUPER,q,killclient
+      bind=SUPER+j,focusdir,left
+      bind=SUPER+l,focusdir,right
+      bind=SUPER+i,focusdir,up
+      bind=SUPER+k,focusdir,down
+      bind=SUPER+SHIFT,j,exchange_client,left
+      bind=SUPER+SHIFT,l,exchange_client,right
+      bind=SUPER+SHIFT,i,exchange_client,up
+      bind=SUPER+SHIFT,k,exchange_client,down
+      bind=SUPER+CTRL,space,togglefloating
+      bind=SUPER+f,togglefullscreen
+      bind=SUPER+r,reload_config
+      bind=SUPER+SHIFT,e,quit
+      bind=SUPER+CTRL,j,tagmon,left
+      bind=SUPER+CTRL,l,tagmon,right
+      bind=SUPER+CTRL,i,tagmon,up
+      bind=SUPER+CTRL,k,tagmon,down
+      bind=SUPER,1,view,1
+      bind=SUPER,2,view,2
+      bind=SUPER,3,view,3
+      bind=SUPER,4,view,4
+      bind=SUPER,5,view,5
+      bind=SUPER,6,view,6
+      bind=SUPER,7,view,7
+      bind=SUPER,8,view,8
+      bind=SUPER,9,view,9
+      bind=SUPER+SHIFT,1,tag,1
+      bind=SUPER+SHIFT,2,tag,2
+      bind=SUPER+SHIFT,3,tag,3
+      bind=SUPER+SHIFT,4,tag,4
+      bind=SUPER+SHIFT,5,tag,5
+      bind=SUPER+SHIFT,6,tag,6
+      bind=SUPER+SHIFT,7,tag,7
+      bind=SUPER+SHIFT,8,tag,8
+      bind=SUPER+SHIFT,9,tag,9
     '';
     autostart_sh = ''
-      # MangoWC autostart commands will go here
-      # See autostart.sh for details
+      # Add any startup applications here
     '';
   };
   # Services configuration
