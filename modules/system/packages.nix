@@ -93,6 +93,8 @@ in
       fd
       fzf
       bat
+      eza
+      dust
       jq
       yq
       zip
@@ -104,7 +106,7 @@ in
       gitoxide
 
       # Terminal and shell
-       kitty
+      kitty
       fish
       starship
       direnv
@@ -148,6 +150,8 @@ in
       udev
 
       # Additional libraries for better compatibility
+      xorg.xorgserver
+      
       xorg.libXcursor
       xorg.libXi
       xorg.libXinerama
@@ -157,6 +161,8 @@ in
       xorg.libXrender
       xorg.libXext
       xorg.setxkbmap
+
+      pciutils
 
       # Fix for Xwayland symbol errors
       libkrb5
@@ -188,9 +194,8 @@ in
       # Wayland utilities
       wayland-protocols
       wl-clipboard
-       # Additional Wayland support for NVIDIA
-       xorg.xorgserver
-       xwayland
+      # Additional Wayland support for NVIDIA
+      xwayland
       wlr-randr
       grim
       slurp

@@ -24,6 +24,14 @@
   console.useXkbConfig = true;
   
   # For Wayland (which MangoWC uses), set keyboard layout using system environment
+  services.xserver = {
+    xkb = {
+      layout = "us,ara";  # Enable both US and Arabic layouts
+      options = "grp:win_space_toggle";  # Super+Space to toggle between layouts
+    };
+  };
+  
+  # Set environment variables for Wayland keyboard handling
  environment.variables = {
     GLFW_IM_MODULE = "ibus";
     QT_IM_MODULE = "ibus";
