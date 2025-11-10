@@ -152,9 +152,9 @@
       enable = true;
       settings = {
         # Use configured shell based on defaultShell variable
-        shell = "/etc/profiles/per-user/mina/bin/fish";
+        # shell = "fish";
 
-        font_size = 14;
+        font_size = 17;
         wheel_scroll_min_lines = 1;
         window_padding_width = 4;
         confirm_os_window_close = 0;
@@ -302,6 +302,6 @@
     WLR_RENDERER_ALLOW_SOFTWARE = "1";
     # Keyboard layout settings
     XKB_DEFAULT_LAYOUT = "us,ara";
-    XKB_DEFAULT_OPTIONS = "grp:alt_shift_toggle";
+    XKB_DEFAULT_OPTIONS = "grp:win_space_toggle,caps:swapescape";
  };
 }

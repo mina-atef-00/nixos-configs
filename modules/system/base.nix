@@ -26,7 +26,7 @@
  services.xserver = {
     xkb = {
       layout = "us,ara";  # Enable both US and Arabic layouts
-      options = "grp:alt_shift_toggle";  # Alt+Shift to toggle between layouts
+      options = "grp:win_space_toggle,caps:swapescape";  # Super+Space to toggle layouts, swap Caps/Esc
     };
  };
   
@@ -35,7 +35,7 @@
     GLFW_IM_MODULE = "ibus";
     QT_IM_MODULE = "ibus";
     XKB_DEFAULT_LAYOUT = "us,ara";
-    XKB_DEFAULT_OPTIONS = "grp:alt_shift_toggle";
+    XKB_DEFAULT_OPTIONS = "grp:win_space_toggle,caps:swapescape";
   };
 
   # Set your time zone.
