@@ -152,7 +152,7 @@
       enable = true;
       settings = {
         # Use configured shell based on defaultShell variable
-        shell = "/usr/bin/fish";
+        shell = "/etc/profiles/per-user/mina/bin/fish";
 
         font_size = 14;
         wheel_scroll_min_lines = 1;
@@ -285,7 +285,7 @@
   # Environment variables
  home.sessionVariables = {
     EDITOR = "nvim"; # System-installed
-    # BROWSER = "zen"; # Set in system packages instead
+    BROWSER = "zen"; # Set in system packages instead
     TERMINAL = "kitty"; # System-installed
     READER = "zathura"; # System-installed
     XDG_CURRENT_DESKTOP = "mangowc"; # Keep this for compatibility when mangowc is re-enabled
@@ -300,5 +300,8 @@
     # Additional environment variables for NVIDIA/Wayland compatibility
     WLR_NO_HARDWARE_CURSORS = "1";
     WLR_RENDERER_ALLOW_SOFTWARE = "1";
+    # Keyboard layout settings
+    XKB_DEFAULT_LAYOUT = "us,ara";
+    XKB_DEFAULT_OPTIONS = "grp:alt_shift_toggle";
  };
 }

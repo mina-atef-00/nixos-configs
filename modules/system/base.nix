@@ -19,8 +19,24 @@
   boot.plymouth.enable = true;
   boot.kernelModules = [ "v4l2loopback" "uinput" "xpad"];
 
-  # Configure console keymap
+  # Configure console and desktop keymap
   console.keyMap = "us";
+  
+  # For Wayland (which MangoWC uses), set keyboard layout
+ services.xserver = {
+    xkb = {
+      layout = "us,ara";  # Enable both US and Arabic layouts
+      options = "grp:alt_shift_toggle";  # Alt+Shift to toggle between layouts
+    };
+ };
+  
+  # Set environment variables for Wayland keyboard handling
+ environment.variables = {
+    GLFW_IM_MODULE = "ibus";
+    QT_IM_MODULE = "ibus";
+    XKB_DEFAULT_LAYOUT = "us,ara";
+    XKB_DEFAULT_OPTIONS = "grp:alt_shift_toggle";
+  };
 
   # Set your time zone.
   time.timeZone = "Africa/Cairo";
