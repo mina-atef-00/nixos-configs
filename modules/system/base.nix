@@ -26,7 +26,7 @@
  services.xserver = {
     xkb = {
       layout = "us,ara";  # Enable both US and Arabic layouts
-      options = "grp:win_space_toggle,caps:swapescape";  # Super+Space to toggle layouts, swap Caps/Esc
+      options = "grp:win_space_toggle";  # Super+Space to toggle between layouts
     };
  };
   
@@ -35,7 +35,10 @@
     GLFW_IM_MODULE = "ibus";
     QT_IM_MODULE = "ibus";
     XKB_DEFAULT_LAYOUT = "us,ara";
-    XKB_DEFAULT_OPTIONS = "grp:win_space_toggle,caps:swapescape";
+    XKB_DEFAULT_OPTIONS = "grp:win_space_toggle";
+    # Additional variables to help with Wayland keyboard issues
+    WAYLAND_KEYBOARD_REPEAT_DELAY = "400";
+    WAYLAND_KEYBOARD_REPEAT_RATE = "40";
   };
 
   # Set your time zone.

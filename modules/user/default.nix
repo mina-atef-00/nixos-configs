@@ -302,6 +302,9 @@
     WLR_RENDERER_ALLOW_SOFTWARE = "1";
     # Keyboard layout settings
     XKB_DEFAULT_LAYOUT = "us,ara";
-    XKB_DEFAULT_OPTIONS = "grp:win_space_toggle,caps:swapescape";
+    XKB_DEFAULT_OPTIONS = "grp:win_space_toggle";
+    # Additional variables to help with Wayland keyboard issues
+    WAYLAND_KEYBOARD_REPEAT_DELAY = "400";
+    WAYLAND_KEYBOARD_REPEAT_RATE = "40";
  };
 }
