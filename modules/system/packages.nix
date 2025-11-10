@@ -30,6 +30,9 @@ let
   # Get the latest Thunderbird from unstable with fallback
   thunderbird = if pkgs-unstable ? thunderbird then pkgs-unstable.thunderbird else pkgs.thunderbird;
 
+  # Get Zen Browser from the dedicated flake
+  zen-browser = inputs.zen-browser.packages.${pkgs.system}.default;
+
   # Get MangoWC from the input (this was causing the error, so we'll remove the reference)
   # mangowc = inputs.mangowc.packages.${pkgs.system}.mangowc;
 
@@ -129,7 +132,7 @@ in
       imagemagick
 
       # Browsers
-      inputs.zen-browser.packages.${pkgs.system}.default or inputs.zen-browser.packages.${pkgs.system}.twilight or inputs.zen-browser.packages.${pkgs.system}.beta
+      zen-browser
 
       # Communication
       vesktop
