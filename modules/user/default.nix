@@ -48,7 +48,7 @@
       focus_on_activate = 1
       
       # Key bindings with full paths for reliability
-      bind=SUPER,Return,spawn,${pkgs.foot}/bin/foot
+      bind=SUPER,Return,spawn,kitty
       bind=SUPER,w,spawn,zen
       bind=SUPER,q,killclient
       bind=SUPER+r,reload_config

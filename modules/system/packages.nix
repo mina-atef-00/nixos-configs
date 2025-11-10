@@ -105,7 +105,6 @@ in
 
       # Terminal and shell
        kitty
-       foot
       fish
       starship
       direnv

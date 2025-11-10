@@ -19,18 +19,7 @@
   boot.plymouth.enable = true;
   boot.kernelModules = [ "v4l2loopback" "uinput" "xpad"];
 
-  # Configure console and desktop keymap
-  console.keyMap = "us";
-  
-  # For Wayland (which MangoWC uses), set keyboard layout
- services.xserver = {
-    xkb = {
-      layout = "us,ara";  # Enable both US and Arabic layouts
-      options = "grp:win_space_toggle";  # Super+Space to toggle between layouts
-    };
- };
-  
-  # Set environment variables for Wayland keyboard handling
+  # For Wayland (which MangoWC uses), set keyboard layout using system environment
  environment.variables = {
     GLFW_IM_MODULE = "ibus";
     QT_IM_MODULE = "ibus";
@@ -70,7 +59,7 @@
   };
 
   # Use the standard NixOS firewall with proper configuration
-  networking.firewall = {
+ networking.firewall = {
     enable = true;
     allowedTCPPorts = [ 2222 ]; # SSH on new port
     allowedUDPPorts = [ ]; # No specific UDP ports
@@ -78,6 +67,7 @@
     # No need to explicitly allow outgoing connections - this happens automatically
     allowPing = false; # Disable ping unless needed for diagnostics
  };
+
 
 
   # Define a user account. Don't forget to set a password with 'passwd'.
@@ -124,6 +114,7 @@
   };
 
 
+
   # upower.enable = false; # Power management (required for DMS battery monitoring)
 
 
@@ -138,10 +129,10 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     wireplumber.enable = true; 
-  };
+ };
 
   # Enable flatpak support
-  services.flatpak.enable = false;
+ services.flatpak.enable = false;
 
   # Enable Podman
   virtualisation.podman = {
@@ -154,21 +145,21 @@
   };
 
   # Enable NTFS support
-  services.udisks2.enable = true;
-  boot.supportedFilesystems = [ "ntfs" "nfs" ];
+ services.udisks2.enable = true;
+ boot.supportedFilesystems = [ "ntfs" "nfs" ];
 
   # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
+ # started in user sessions.
   # programs.mtr.enable = true;
   # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
-  };
+ };
 
   # Enable the GNU Nix package manager
-  nix.package = pkgs.nix;
-  nix.settings.experimental-features = [
+ nix.package = pkgs.nix;
+ nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
@@ -195,12 +186,13 @@
   # Note: blueman is configured in hardware module
 
   # Enable Tailscale
-  # Enable NFS support
-  services.rpcbind.enable = true;
+ # Enable NFS support
+ services.rpcbind.enable = true;
+
 
 
   services.tailscale.enable = true;
-
+  
   
 
   # Enable NFS client
@@ -212,11 +204,11 @@
   };
   
   # Enable avahi
-  services.avahi = {
+ services.avahi = {
     enable = true;
     nssmdns4 = true;
   };
 
   # Define how NixOS should be built.
-  system.stateVersion = "25.05"; # Did you read the comment?
+ system.stateVersion = "25.05"; # Did you read the comment?
 }
