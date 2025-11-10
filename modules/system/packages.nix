@@ -156,6 +156,7 @@ in
       xorg.libXdamage
       xorg.libXrender
       xorg.libXext
+      xorg.setxkbmap
 
       # Fix for Xwayland symbol errors
       libkrb5

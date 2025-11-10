@@ -19,6 +19,10 @@
   boot.plymouth.enable = true;
   boot.kernelModules = [ "v4l2loopback" "uinput" "xpad"];
 
+  # Configure console keymap (this sets the system-wide default)
+  console.keyMap = lib.mkForce "us,ara";
+  console.useXkbConfig = true;
+  
   # For Wayland (which MangoWC uses), set keyboard layout using system environment
  environment.variables = {
     GLFW_IM_MODULE = "ibus";
