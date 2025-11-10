@@ -20,7 +20,7 @@
   boot.kernelModules = [ "v4l2loopback" "uinput" "xpad"];
 
   # Configure console keymap (this sets the system-wide default)
-  console.keyMap = lib.mkForce "us,ara";
+  # console.keyMap = lib.mkForce "us,ara";  # Commented out because multiple layouts can't be set this way
   console.useXkbConfig = true;
   
   # For Wayland (which MangoWC uses), set keyboard layout using system environment
@@ -200,6 +200,7 @@
   # Enable Tailscale
  # Enable NFS support
  services.rpcbind.enable = true;
+ services.nfs.server.enable = true;
 
 
 

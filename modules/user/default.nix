@@ -64,6 +64,8 @@
   # Programs configuration
   programs = {
     home-manager.enable = true;
+    # dconf.enable = true;
+    # seahorse.enable = true;
 
     # Fish shell configuration
     fish = {
@@ -146,8 +148,6 @@
         };
       };
     };
-
-
     kitty = {
       enable = true;
       settings = {
@@ -221,7 +221,6 @@
         map ctrl+shift+backspace restore_font_size
       '';
     };
-
     # Direnv integration
     direnv = {
       enable = true;
@@ -229,7 +228,6 @@
         enable = true;
       };
     };
-
 
     # Neovim configuration - using system-installed custom neovim with local config
     neovim = {

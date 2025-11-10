@@ -16,8 +16,6 @@ let
     };
   };
 
-  
-
   # Get the latest Vesktop from unstable with fallback
  vesktop = if pkgs-unstable ? vesktop then pkgs-unstable.vesktop else pkgs.discord;
 
@@ -162,8 +160,31 @@ in
       xorg.libXext
       xorg.setxkbmap
 
+      # Input diagnostic tools
+      xorg.xev
+      evtest
+      brightnessctl
+      glxinfo
+      duf
+      dysk
+      file-roller
+      eog
+      inxi
+      killall
+      libnotify
+      lshw
+      ncdu
+      nixfmt-rfc-style
+      nixd
+      nil
+      sox
+      usbutils
+      v4l-utils
+      gum
+      gtk3
+      gtk4
       pciutils
-
+      dconf
       # Fix for Xwayland symbol errors
       libkrb5
       keyutils

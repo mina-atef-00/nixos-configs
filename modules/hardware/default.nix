@@ -60,13 +60,9 @@
   # Remove deprecated hardware.opengl configuration
 
   # Firmware support
+  # Enable QMK keyboard support for advanced keyboard handling
+  hardware.keyboard.qmk.enable = true;
   hardware.enableRedistributableFirmware = true;
-
-  # Network hardware
-  networking = {
-    useDHCP = lib.mkDefault true;
-    networkmanager.enable = true;
-  };
 
   # Enable bluetooth
   hardware.bluetooth.enable = true;
