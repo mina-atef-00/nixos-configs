@@ -81,10 +81,6 @@ in
     with pkgs;
     [
       # Core utilities
-      swaybg
-      swaync
-      waybar
-
       git
       wget
       curl
