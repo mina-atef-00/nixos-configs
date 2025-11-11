@@ -9,20 +9,22 @@
 {
   # File system configuration based on your current setup
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/e5a7a191-9c75-4a01-a9c2-1a910dcc7168";
+    { device = "/dev/disk/by-uuid/4cdb365c-f2a3-4088-88ae-44cf1d8542b6";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/2210-3B3A";
+    { device = "/dev/disk/by-uuid/8448-D59E";
       fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
+      options = [ "fmask=0022" "dmask=0022" ];
     };
 
- swapDevices =
-    [ { device = "/dev/disk/by-uuid/2e90d11a-5706-438a-b0f4-b1fb40b82a03"; }
-    ];
-
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 8192;
+    }
+  ];
   # # Enable zram swap
   # zramSwap = {
   #   enable = true;
@@ -53,25 +55,8 @@
     # Fine-grained power management. Turns off GPU when not in use.
     # Experimental and only works on modern Nvidia GPUs (Turing or newer).
     powerManagement.finegrained = false;
-
   };
 
-  # Enable OpenGL support (already configured in hardware.graphics)
-  # Remove deprecated hardware.opengl configuration
-
-  # Firmware support
-  # Enable QMK keyboard support for advanced keyboard handling
-  hardware.keyboard.qmk.enable = true;
   hardware.enableRedistributableFirmware = true;
-
-  # Enable bluetooth
   hardware.bluetooth.enable = true;
-  services.blueman.enable = true; # Disable blueman since DMS Shell may provide better integration
-
-  # Enable audio with PipeWire (already configured in base.nix)
-  # Remove deprecated hardware.pulseaudio configuration
-
-  # Enable printing (can be disabled later if not needed)
-  services.printing.enable = false;
-
 }

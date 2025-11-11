@@ -21,26 +21,8 @@
 
   # Configure console keymap (this sets the system-wide default)
   # console.keyMap = lib.mkForce "us,ara";  # Commented out because multiple layouts can't be set this way
-  console.useXkbConfig = true;
+  console.keyMap = "us";
   
-  # For Wayland (which MangoWC uses), set keyboard layout using system environment
-  services.xserver = {
-    xkb = {
-      layout = "us,ara";  # Enable both US and Arabic layouts
-      options = "grp:win_space_toggle";  # Super+Space to toggle between layouts
-    };
-  };
-  
-  # Set environment variables for Wayland keyboard handling
- environment.variables = {
-    GLFW_IM_MODULE = "ibus";
-    QT_IM_MODULE = "ibus";
-    XKB_DEFAULT_LAYOUT = "us,ara";
-    XKB_DEFAULT_OPTIONS = "grp:win_space_toggle";
-    # Additional variables to help with Wayland keyboard issues
-    WAYLAND_KEYBOARD_REPEAT_DELAY = "400";
-    WAYLAND_KEYBOARD_REPEAT_RATE = "40";
-  };
 
   # Set your time zone.
   time.timeZone = "Africa/Cairo";
@@ -81,24 +63,22 @@
  };
 
 
+users.users = {
+    "mina" = {
+      shell = pkgs.fish;
+      isNormalUser = true;
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "audio"
+        "video"
+        "podman"
+      ];
+      hashedPassword = "$6$rounds=4096$0nh2sl0D0G0gqEiA$TCFCA36zEVuLGRDrluY02PaILJ31xLTjou.ADxgI8iWoar98sBUn0m4V06erkBU2UXkJYFVIljXNTv2aRTh4m0";
+    };
 
-  # Define a user account. Don't forget to set a password with 'passwd'.
-  users.users.mina = {
-    isNormalUser = true;
-    description = "mina user";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "audio"
-      "video"
-      "podman"
-    ];
-    packages = with pkgs; [
-      # Add packages for this user
-    ];
-    shell = pkgs.fish;
+    root.hashedPassword = "$6$rounds=4096$ZndMwux/UG4xJ6G/$mPu2hJDUbskiuagCddmnd3cogdNgpDk1z9LBWaTOeG8he90oWGW0qgqqGiVUSAxyiQaxheCm4sNrDqroguiCQ1";
   };
-
   # Use Fish shell as default
   programs.fish.enable = true;
 
