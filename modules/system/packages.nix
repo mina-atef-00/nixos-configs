@@ -81,7 +81,7 @@ in
     with pkgs;
     [
       # Core utilities
-      swaybc
+      swaybg
       swaync
       waybar
 
